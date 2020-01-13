@@ -1,0 +1,112 @@
+<odoo>
+  <data>
+      <!-- explicit list view definition -->
+      <record model="ir.ui.view" id="view_pms_decorproject">
+          <field name="name">saaspms.pms_decorproject.list</field>
+          <field name="model">saaspms.decorproject</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="name"/>
+                  <field name="active"/>
+                  <field name="date_start"/>
+                  <field name="date_required"/>
+              </tree>
+          </field>
+      </record>
+
+      <!-- explicit form view definition -->
+      <record id="edit_decorproject" model="ir.ui.view">
+          <field name="name">saaspms.pms_decorproject.form</field>
+          <field name="model">saaspms.decorproject</field>
+          <field name="arch" type="xml">
+              <form string="Project">
+                  <sheet string="Decor Project">
+                      <div class="oe_button_box" name="button_box" groups="base.group_user">
+                          <button class="oe_stat_button" type="action"
+                                  name="%(view_decorproject_decorpretasks_all)d" icon="fa-tasks">
+                              <field string="Decor PreTasks" name="decor_pretasks" widget="statinfo"
+                                     options="{'label_field': 'label_tasks'}"/>
+                          </button>
+                          <button class="oe_stat_button" type="action"
+                                  name="%(view_decorproject_decortasks_all)d" icon="fa-tasks">
+                              <field string="Decor Tasks" name="decor_tasks" widget="statinfo"
+                                     options="{'label_field': 'label_tasks'}"/>
+                          </button>
+                      </div>
+                      <div class="oe_title">
+                          <h1>
+                              <field name="name" placeholder="Project Name"/>
+                          </h1>
+                      </div>
+                      <notebook>
+                          <page name="settings" string="Settings">
+                              <group>
+                                  <field name="active" widget="radio"/>
+                                  <field name="date_start" string="Date Staret"/>
+                                  <field name="date_required" string="Date Required"/>
+                              </group>
+                              <group>
+                                  <field name="decor_address" string="Address"/>
+                              </group>
+                          </page>
+                      </notebook>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="saas-pms.action_server">
+      <field name="name">saas-pms server</field>
+      <field name="model_id" ref="model_saas-pms_saas-pms"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+<!--    <record id="ir_actions_server_project_sample" model="ir.actions.server">-->
+<!--      <field name="name">Project: Activate Sample Project</field>-->
+<!--      <field name="model_id" ref="project.model_project_project"/>-->
+<!--      <field name="state">code</field>-->
+<!--      <field name="code">action = model.activate_sample_project()</field>-->
+<!--    </record>-->
+
+
+
+
+
+
+    <!-- Project -->
+
+
+<!--    <record id="view_project_project_filter" model="ir.ui.view">-->
+<!--      <field name="name">saaspms.project.select</field>-->
+<!--      <field name="model">saaspms.project</field>-->
+<!--      <field name="arch" type="xml">-->
+<!--        <search string="Search Project">-->
+<!--          <field name="name" string="Project"/>-->
+<!--          <field name="user_id" string="Project Manager"/>-->
+<!--          <field name="partner_id" string="Customer" filter_domain="[('partner_id', 'child_of', self)]"/>-->
+<!--          <filter string="My Favorites" name="my_projects" domain="[('favorite_user_ids', 'in', uid)]"/>-->
+<!--          <separator/>-->
+<!--          <filter string="Followed" name="followed_by_me" domain="[('message_is_follower', '=', True)]"/>-->
+<!--          <separator/>-->
+<!--          <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>-->
+<!--          <group expand="0" string="Group By">-->
+<!--            <filter string="Project Manager" name="Manager" context="{'group_by': 'user_id'}"/>-->
+<!--            <filter string="Customer" name="Partner" context="{'group_by': 'partner_id'}"/>-->
+<!--          </group>-->
+<!--        </search>-->
+<!--      </field>-->
+<!--    </record>-->
+
+
+  </data>
+</odoo>

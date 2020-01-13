@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- Top menu item -->
+    <menuitem name="DecorProject"
+              id="menu_main_saaspms"
+              groups="group_decorproject_manager,group_decorproject_user"
+              sequence="50"/>
+
+    <menuitem id="menu_project_config" name="Configuration" parent="menu_main_pm"
+              sequence="100" groups="project.group_project_manager"/>
+
+    <act_window id="action_saaspms_decorproject"
+                name="decorproject"
+                res_model="saaspms.decorproject"
+                view_mode="tree,form"
+    />
+
+    <menuitem id="menu_saaspms_decorproject"
+              name="decorproject"
+              action="action_saaspms_decorproject"
+              parent="menu_main_saaspms"/>
+    />
+
+
+</odoo>

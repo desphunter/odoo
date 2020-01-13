@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <act_window id="action_saaspms_resource_decorworker"
+                name="decorworker"
+                res_model="saaspms.decorworker"
+                view_mode="tree,form"
+    />
+
+    <menuitem id="menu_saaspms_resource_decorworker"
+              name="decorworker"
+              action="action_saaspms_resource_decorworker"
+              parent="saas-pms.menu_main_saaspms"/>
+    />
+</odoo>
