@@ -3,23 +3,54 @@
         <!-- Top menu item -->
     <menuitem name="DecorProject"
               id="menu_main_saaspms"
-              groups="group_decorproject_manager,group_decorproject_user"
               sequence="50"/>
 
-    <menuitem id="menu_project_config" name="Configuration" parent="menu_main_pm"
-              sequence="100" groups="project.group_project_manager"/>
+    <menuitem id="menu_decorproject_config" name="Configuration" parent="menu_main_saaspms"
+              sequence="100"/>
 
     <act_window id="action_saaspms_decorproject"
-                name="decorproject"
+                name="operate decorprojects"
                 res_model="saaspms.decorproject"
-                view_mode="tree,form"
-    />
+                view_mode="tree,form"/>
 
     <menuitem id="menu_saaspms_decorproject"
               name="decorproject"
               action="action_saaspms_decorproject"
-              parent="menu_main_saaspms"/>
-    />
+              parent="menu_main_saaspms"
+              sequence="1"/>
+
+    <act_window id="action_saaspms_decorpretask"
+                name="DecorProject Pretask"
+                res_model="saaspms.decorpretask"
+                view_mode="tree,form"/>
+
+    <menuitem id="menu_saaspms_decorpretask"
+              name="decor pretask"
+              action="action_saaspms_decorpretask"
+              parent="menu_main_saaspms"
+              sequence="5"/>
+
+    <act_window id="action_saaspms_decorproject_stage"
+                name="DecorProject Stages"
+                res_model="saaspms.decorproject.stage"
+                view_mode="tree,form"/>
+
+    <menuitem id="menu_saaspms_configure_decorproject_stage"
+              name="stage"
+              action="action_saaspms_decorproject_stage"
+              parent="menu_decorproject_config"
+              sequence="2"/>
+
+    <act_window id="action_saaspms_tag"
+                name="operate tags"
+                res_model="saaspms.tags"
+                view_mode="tree,form"/>
+
+    <menuitem id="menu_saaspms_configure_tags"
+              name="operate tags"
+              action="action_saaspms_tag"
+              parent="menu_decorproject_config"
+              sequence="3"/>
 
 
 </odoo>

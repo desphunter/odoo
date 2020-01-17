@@ -26,6 +26,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/decorproject_views.xml',
+        'views/decortask_views.xml',
         'views/saaspms_menu.xml',
         'views/templates.xml',
     ],

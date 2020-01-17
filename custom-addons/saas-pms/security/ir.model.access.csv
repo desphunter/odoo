@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_saaspms_decorproject,saaspms.decorproject, model_saaspms_decorproject,base.group_user,1,1,1,1
-access_saaspms_decortask,saaspms.decortask, model_saaspms_decortask,base.group_user,1,1,1,1
-access_saaspms_project,saaspms.decorproject, model_saaspms_decorproject,base.group_user,1,1,1,1
+access_saaspms_decorproject_stage,saaspms.decorproject.stage,model_saaspms_decorproject_stage,base.group_user,1,1,1,1
+access_saaspms_decorproject,saaspms.decorproject,model_saaspms_decorproject,base.group_user,1,1,1,1
+access_saaspms_decorpretask,saaspms.decorpretask,model_saaspms_decorpretask,base.group_user,1,1,1,1
+access_saaspms_tags,saaspms.tags,model_saaspms_tags,base.group_user,1,1,1,1

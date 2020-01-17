@@ -1,37 +1,73 @@
 <odoo>
   <data>
-      <!-- explicit list view definition -->
+      <!-- decorproject stage -->
+<!--      <record id="view_pms_decorproject_stage" model="ir.ui.view">-->
+<!--          <field name="name">saaspms.pms_decorproject_stage.list</field>-->
+<!--          <field name="model">saaspms.decorproject.stage</field>-->
+<!--          <field name="arch" type="xml">-->
+<!--              <tree string="Project Stage">-->
+<!--                  <field name="sequence" widget="handle" groups="base.group_no_one"/>-->
+<!--                  <field name="name"/>-->
+<!--                  <field name="description"/>-->
+<!--              </tree>-->
+<!--          </field>-->
+<!--      </record>-->
+
+<!--      <record id="edit_pms_decorproject_stage" model="ir.ui.view">-->
+<!--          <field name="name">saaspms.pms_decorproject_stage.form</field>-->
+<!--          <field name="model">saaspms.decorproject.stage</field>-->
+<!--          <field name="arch" type="xml">-->
+<!--              <form string="Project Stage">-->
+<!--                  <sheet>-->
+<!--                      <group>-->
+<!--                          <group>-->
+<!--                              <field name="name"/>-->
+<!--                          </group>-->
+<!--                          <group>-->
+<!--                              <field name="sequence"/>-->
+<!--                          </group>-->
+<!--                      </group>-->
+<!--                  </sheet>-->
+<!--              </form>-->
+<!--          </field>-->
+<!--      </record>-->
+
+      <!-- decorproject -->
       <record model="ir.ui.view" id="view_pms_decorproject">
           <field name="name">saaspms.pms_decorproject.list</field>
           <field name="model">saaspms.decorproject</field>
           <field name="arch" type="xml">
               <tree>
+                  <field name="id"/>
                   <field name="name"/>
                   <field name="active"/>
                   <field name="date_start"/>
                   <field name="date_required"/>
+                  <field name="pretask_count"/>
               </tree>
           </field>
       </record>
 
-      <!-- explicit form view definition -->
       <record id="edit_decorproject" model="ir.ui.view">
           <field name="name">saaspms.pms_decorproject.form</field>
           <field name="model">saaspms.decorproject</field>
           <field name="arch" type="xml">
               <form string="Project">
+                  <header>
+                      <button string="Load DecorPretasks" name="open_decorpretasks" type="object" class="btn-primary o_open_tasks"
+                              attrs="{'invisible' : [('stage_id', '!=', 1)]}"/>
+                      <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}"/>
+                  </header>
                   <sheet string="Decor Project">
                       <div class="oe_button_box" name="button_box" groups="base.group_user">
                           <button class="oe_stat_button" type="action"
-                                  name="%(view_decorproject_decorpretasks_all)d" icon="fa-tasks">
-                              <field string="Decor PreTasks" name="decor_pretasks" widget="statinfo"
-                                     options="{'label_field': 'label_tasks'}"/>
+                                  name="saas-pms.view_decorproject_decorpretasks_all" icon="fa-tasks">
+                              <field string="Tasks" name="pretask_count" widget="statinfo"/>
                           </button>
-                          <button class="oe_stat_button" type="action"
-                                  name="%(view_decorproject_decortasks_all)d" icon="fa-tasks">
-                              <field string="Decor Tasks" name="decor_tasks" widget="statinfo"
-                                     options="{'label_field': 'label_tasks'}"/>
-                          </button>
+<!--                          <button class="oe_stat_button" type="action"-->
+<!--                                  name="view_decorproject_decortasks_all" icon="fa-tasks">-->
+<!--                          </button>-->
+
                       </div>
                       <div class="oe_title">
                           <h1>
@@ -42,7 +78,7 @@
                           <page name="settings" string="Settings">
                               <group>
                                   <field name="active" widget="radio"/>
-                                  <field name="date_start" string="Date Staret"/>
+                                  <field name="date_start" string="Date Start"/>
                                   <field name="date_required" string="Date Required"/>
                               </group>
                               <group>
@@ -50,6 +86,32 @@
                               </group>
                           </page>
                       </notebook>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+      <!-- tags -->
+      <record id="view_pms_tags" model="ir.ui.view">
+          <field name="name">saaspms.tags.list</field>
+          <field name="model">saaspms.tags</field>
+          <field name="arch" type="xml">
+              <tree string="Tags" editable="bottom">
+                  <field name="name"/>
+              </tree>
+          </field>
+      </record>
+
+      <record id="edit_tags" model="ir.ui.view">
+          <field name="name">saaspms.tags.form</field>
+          <field name="model">saaspms.tags</field>
+          <field name="arch" type="xml">
+              <form string="Tags">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+                      </group>
                   </sheet>
               </form>
           </field>
@@ -77,11 +139,6 @@
 <!--      <field name="state">code</field>-->
 <!--      <field name="code">action = model.activate_sample_project()</field>-->
 <!--    </record>-->
-
-
-
-
-
 
     <!-- Project -->
 
