@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <!-- Top menu item -->
+    <!-- Top menu item -->
     <menuitem name="DecorProject"
               id="menu_main_saaspms"
-              sequence="50"/>
+              sequence="10"/>
 
-    <menuitem id="menu_decorproject_config" name="Configuration" parent="menu_main_saaspms"
-              sequence="100"/>
-
+    <!-- project menu item -->
     <act_window id="action_saaspms_decorproject"
                 name="operate decorprojects"
                 res_model="saaspms.decorproject"
@@ -17,8 +15,10 @@
               name="decorproject"
               action="action_saaspms_decorproject"
               parent="menu_main_saaspms"
-              sequence="1"/>
+              sequence="20"/>
 
+
+    <!-- pretask menu item -->
     <act_window id="action_saaspms_decorpretask"
                 name="DecorProject Pretask"
                 res_model="saaspms.decorpretask"
@@ -28,7 +28,11 @@
               name="decor pretask"
               action="action_saaspms_decorpretask"
               parent="menu_main_saaspms"
-              sequence="5"/>
+              sequence="30"/>
+
+    <!-- Configuration menu item -->
+    <menuitem id="menu_decorproject_config" name="Configuration" parent="menu_main_saaspms"
+              sequence="40"/>
 
     <act_window id="action_saaspms_decorproject_stage"
                 name="DecorProject Stages"
@@ -39,7 +43,7 @@
               name="stage"
               action="action_saaspms_decorproject_stage"
               parent="menu_decorproject_config"
-              sequence="2"/>
+              sequence="41"/>
 
     <act_window id="action_saaspms_tag"
                 name="operate tags"
@@ -50,7 +54,44 @@
               name="operate tags"
               action="action_saaspms_tag"
               parent="menu_decorproject_config"
-              sequence="3"/>
+              sequence="42"/>
+
+    <act_window id="action_saaspms_itemtype"
+                name="Item Type"
+                res_model="saaspms.decoritem.type"
+                view_mode="tree,form"/>
+
+    <menuitem id="menu_saaspms_configure_itemtype"
+              name="Item Type"
+              action="action_saaspms_itemtype"
+              parent="menu_decorproject_config"
+              sequence="43"/>
+
+    <act_window id="action_saaspms_itemunit"
+                name="Item Unit"
+                res_model="saaspms.decoritem.unit"
+                view_mode="tree,form"/>
 
 
+    <menuitem id="menu_saaspms_configure_itemunit"
+              name="Item Unit"
+              action="action_saaspms_itemunit"
+              parent="menu_decorproject_config"
+              sequence="44"/>
+
+    <!-- Template menu item -->
+    <menuitem id="menu_decorproject_template" name="Template" parent="menu_main_saaspms"
+              sequence="50"/>
+
+    <act_window id="action_saaspms_template_decoriteminput"
+                name="Input Item Template"
+                res_model="saaspms.decoriteminput"
+                view_mode="tree,form"/>
+
+    <menuitem id="menu_saaspms_template_decoriteminput"
+              name="Input Item Template"
+              action="action_saaspms_template_decoriteminput"
+              parent="menu_decorproject_template"
+              sequence="51"/>
 </odoo>
+

@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from . import decortask
 
 class DecorProjectStage(models.Model):
     _name = 'saaspms.decorproject.stage'
@@ -66,7 +67,7 @@ class DecorProject(models.Model):
 
     pretask_count = fields.Integer(compute='_compute_pretask_count', string="PreTask Count")
     decorpretasks = fields.One2many('saaspms.decorpretask', 'decorproject_id', string='Decor PreTask Activities')
-    # decorpretask_ids = fields.One2many('saaspms.decorpretask', 'decorproject_id', string='Decor Pretasks')
+    decorpretask_ids = fields.One2many('saaspms.decorpretask', 'decorproject_id', string='Decor Pretasks')
 
     # decortasks = fields.One2many('saaspms.decortask', 'decorproject_id', string="Decor Task Activities")
     # decortask_ids = fields.One2many('saaspms.decortask', 'decorproject_id', string='Decor Tasks')

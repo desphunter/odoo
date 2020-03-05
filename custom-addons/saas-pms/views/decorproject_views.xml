@@ -32,6 +32,20 @@
 <!--          </field>-->
 <!--      </record>-->
 
+      <record id="view_pretask_search_form" model="ir.ui.view">
+          <field name="name">saaspms.decorpretask.search.form</field>
+          <field name="model">saaspms.decorpretask</field>
+          <field name="arch" type="xml">
+              <search string="Decor Tasks">
+                  <field name="name" string="Decor Task"/>
+                  <field name="decorproject_id"/>
+                  <group expand="0" string="Group By">
+                      <filter string="Decor Project" name="decorproject" context="{'group_by': 'decorproject_id'}"/>
+                  </group>
+              </search>
+          </field>
+      </record>
+
       <!-- decorproject -->
       <record model="ir.ui.view" id="view_pms_decorproject">
           <field name="name">saaspms.pms_decorproject.list</field>
@@ -77,7 +91,7 @@
                       <notebook>
                           <page name="settings" string="Settings">
                               <group>
-                                  <field name="active" widget="radio"/>
+                                  <field name="active" invisibe="1"/>
                                   <field name="date_start" string="Date Start"/>
                                   <field name="date_required" string="Date Required"/>
                               </group>

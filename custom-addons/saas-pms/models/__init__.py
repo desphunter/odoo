@@ -2,3 +2,4 @@
 
 from . import decorproject
 from . import decortask
+from . import decoritem

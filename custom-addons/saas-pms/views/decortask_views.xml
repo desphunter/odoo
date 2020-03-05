@@ -4,7 +4,7 @@
 
         <!-- decor pre task -->
         <record model="ir.ui.view" id="view_pms_decorpretask">
-            <field name="name">saaspms.pms_decorpretask.list</field>
+            <field name="name">saaspms.pms_decorpretask.tree</field>
             <field name="model">saaspms.decorpretask</field>
             <field name="arch" type="xml">
                 <tree>
@@ -44,13 +44,14 @@
         </record>
 
         <record id="view_decorproject_decorpretasks_all" model="ir.actions.act_window">
-            <field name="name">saaspms.pms_decorpretask</field>
+            <field name="name">Project ecorpretask</field>
             <field name="res_model">saaspms.decorpretask</field>
             <field name="context">{
                 'search_default_project_id': [active_id],
                 'default_decorproject_id': active_id,
                 }</field>
             <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_pretask_search_form"/>
         </record>
 
 

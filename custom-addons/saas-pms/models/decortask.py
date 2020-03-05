@@ -1,6 +1,7 @@
 from . import decorproject
 from odoo import api, fields, models
 from odoo.tools.misc import format_date
+from . import decorproject
 
 
 # class DecorTask(models.Model):
@@ -60,9 +61,14 @@ class DecorPreTask(models.Model):
     name = fields.Char(string='PreTask Name', required=True, index=True)
     description = fields.Html(string='Description')
 
+
+    sequence = fields.Integer(string='Sequence', index=True, default=10,
+        help="Gives the sequence order when displaying a list of tasks.")
+
     defined_code = fields.Char(string='PreTask Defined Purchase_code', required=True, index=True)
     worktime_coefficient = fields.Integer(string='Work Time Coefficient', default=1,
                                           help='Give the coefficient of the standard required time.')
+
     decorproject_id = fields.Many2one('saaspms.decorproject', string='Decor Project',
                                       default=lambda self: self.env.context.get('default_decorproject_id'),
                                       index=True, tracking=True, change_default=True)
