@@ -432,7 +432,7 @@ class Lead(models.Model):
         return write_result
 
     def _update_probability(self):
-        lead_probabilities = self._pls_get_naive_bayes_probabilities()
+        lead_probabilities = self.sudo()._pls_get_naive_bayes_probabilities()
         for lead in self:
             if lead.id in lead_probabilities:
                 lead_proba = lead_probabilities[lead.id]
@@ -480,6 +480,11 @@ class Lead(models.Model):
     # Actions Methods
     # ----------------------------------------
 
+    def toggle_active(self):
+        res = super(Lead, self).toggle_active()
+        self.filtered(lambda lead: lead.active)._update_probability()
+        return res
+
     def _rebuild_pls_frequency_table_threshold(self):
         """ Called by action_set_lost and action_set_won.
          Will run the cron to update the frequency table only if the number of lead is above
@@ -496,7 +501,7 @@ class Lead(models.Model):
 
     def action_set_lost(self, **additional_values):
         """ Lost semantic: probability = 0 or active = False """
-        result = self.write({'active': False, 'probability': 0, **additional_values})
+        result = self.write({'active': False, 'probability': 0, 'automated_probability': 0, **additional_values})
         self._rebuild_pls_frequency_table_threshold()
         return result
 

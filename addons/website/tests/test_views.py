@@ -221,20 +221,6 @@ class TestViewSaving(common.TransactionCase):
             'text node characters wrongly unescaped when rendering'
         )
 
-    def test_save_node_with_attr(self):
-        """ Test saving node with saved element changed attrs """
-        view = self.env['ir.ui.view'].create({
-            'arch': u'<t t-name="dummy"><div>hi</div><t esc="0"/></t>',
-            'type': 'qweb'
-        })
-        replacement = u'<div data-oe-id="55" class="nice">hoi</div>'
-        view.save(replacement, xpath='/t/div')
-        self.assertIn(
-            '<div class="nice">hoi</div>',
-            view.arch,
-            'saved element attributes are saved excluding branding ones'
-        )
-
     def test_save_only_embedded(self):
         Company = self.env['res.company']
         company_id = 1
@@ -910,6 +896,54 @@ class TestCowViewSaving(common.TransactionCase):
         # 5  | Extension   |  , extended content   |     1      |     4    |  website.extension_view
         # 3  | Extension 2 |  , extended content 2 |     1      |     5    |  website.extension_view_2
 
+    def test_cow_extension_with_install(self):
+        View = self.env['ir.ui.view']
+        # Base
+        v1 = View.create({
+            'name': 'Base',
+            'type': 'qweb',
+            'arch': '<div>base content</div>',
+            'key': 'website.base_view_v1',
+        }).with_context(load_all_views=True)
+        self.env['ir.model.data'].create({
+            'module': 'website',
+            'name': 'base_view_v1',
+            'model': v1._name,
+            'res_id': v1.id,
+        })
+
+        # Extension
+        v2 = View.create({
+            'name': 'Extension',
+            'mode': 'extension',
+            'inherit_id': v1.id,
+            'arch': '<div position="inside"><ooo>extended content</ooo></div>',
+            'key': 'website.extension_view_v2',
+        })
+        self.env['ir.model.data'].create({
+            'module': 'website',
+            'name': 'extension_view_v2',
+            'model': v2._name,
+            'res_id': v2.id,
+        })
+
+        # multiwebsite specific
+        v1.with_context(website_id=1).write({'name': 'Extension Specific'})
+
+        original_pool_init = View.pool._init
+        View.pool._init = True
+
+        try:
+            # Simulate module install
+            View._load_records([dict(xml_id='website.extension2_view', values={
+                'name': ' ---',
+                'mode': 'extension',
+                'inherit_id': v1.id,
+                'arch': '<ooo position="replace"><p>EXTENSION</p></ooo>',
+                'key': 'website.extension2_view',
+            })])
+        finally:
+            View.pool._init = original_pool_init
 
 class Crawler(HttpCase):
     def setUp(self):
