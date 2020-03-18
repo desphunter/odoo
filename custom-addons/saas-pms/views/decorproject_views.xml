@@ -32,19 +32,7 @@
 <!--          </field>-->
 <!--      </record>-->
 
-      <record id="view_pretask_search_form" model="ir.ui.view">
-          <field name="name">saaspms.decorpretask.search.form</field>
-          <field name="model">saaspms.decorpretask</field>
-          <field name="arch" type="xml">
-              <search string="Decor Tasks">
-                  <field name="name" string="Decor Task"/>
-                  <field name="decorproject_id"/>
-                  <group expand="0" string="Group By">
-                      <filter string="Decor Project" name="decorproject" context="{'group_by': 'decorproject_id'}"/>
-                  </group>
-              </search>
-          </field>
-      </record>
+
 
       <!-- decorproject -->
       <record model="ir.ui.view" id="view_pms_decorproject">
@@ -68,8 +56,14 @@
           <field name="arch" type="xml">
               <form string="Project">
                   <header>
-                      <button string="Load DecorPretasks" name="open_decorpretasks" type="object" class="btn-primary o_open_tasks"
+                      <button string="Load DecorPretasks" name="open_decorpretasks" type="object" class="btn-primary o_open_pretasks"
                               attrs="{'invisible' : [('stage_id', '!=', 1)]}"/>
+                      <button string="Create Schedule Task" name="trans_pretoschedule_tasks" type="object" class="btn-primary o_create_schedule_tasks"
+                              attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
+                      <button string="Load ScheduleTasks" name="open_decorscheduletasks" type="object" class="btn-primary o_open_scheduletasks"
+                              attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
+                      <button string="Automake Schedule" name="automake_schedule" type="object" class="btn-primary o_maek_schedulet"
+                              attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
                       <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}"/>
                   </header>
                   <sheet string="Decor Project">
@@ -107,29 +101,29 @@
 
 
       <!-- tags -->
-      <record id="view_pms_tags" model="ir.ui.view">
-          <field name="name">saaspms.tags.list</field>
-          <field name="model">saaspms.tags</field>
-          <field name="arch" type="xml">
-              <tree string="Tags" editable="bottom">
-                  <field name="name"/>
-              </tree>
-          </field>
-      </record>
+<!--      <record id="view_pms_tags" model="ir.ui.view">-->
+<!--          <field name="name">saaspms.tags.list</field>-->
+<!--          <field name="model">saaspms.tags</field>-->
+<!--          <field name="arch" type="xml">-->
+<!--              <tree string="Tags" editable="bottom">-->
+<!--                  <field name="name"/>-->
+<!--              </tree>-->
+<!--          </field>-->
+<!--      </record>-->
 
-      <record id="edit_tags" model="ir.ui.view">
-          <field name="name">saaspms.tags.form</field>
-          <field name="model">saaspms.tags</field>
-          <field name="arch" type="xml">
-              <form string="Tags">
-                  <sheet>
-                      <group>
-                          <field name="name"/>
-                      </group>
-                  </sheet>
-              </form>
-          </field>
-      </record>
+<!--      <record id="edit_tags" model="ir.ui.view">-->
+<!--          <field name="name">saaspms.tags.form</field>-->
+<!--          <field name="model">saaspms.tags</field>-->
+<!--          <field name="arch" type="xml">-->
+<!--              <form string="Tags">-->
+<!--                  <sheet>-->
+<!--                      <group>-->
+<!--                          <field name="name"/>-->
+<!--                      </group>-->
+<!--                  </sheet>-->
+<!--              </form>-->
+<!--          </field>-->
+<!--      </record>-->
 
     <!-- server action to the one above -->
 <!--

@@ -1,6 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_saaspms_decorproject_stage,saaspms.decorproject.stage,model_saaspms_decorproject_stage,base.group_user,1,1,1,1
 access_saaspms_decorproject,saaspms.decorproject,model_saaspms_decorproject,base.group_user,1,1,1,1
-access_saaspms_decoritem, saaspms.decoritem, model_saaspms_decoritem, base.group_user, 1,1,1,1
 access_saaspms_decorpretask,saaspms.decorpretask,model_saaspms_decorpretask,base.group_user,1,1,1,1
+access_saaspms_decorscheduletask,saaspms.decorscheduletask,model_saaspms_decorscheduletask,base.group_user,1,1,1,1
+access_saaspms_decoritem_input,saaspms.decoritem.input,model_saaspms_decoritem_input,base.group_user,1,1,1,1
+access_saaspms_decoritem_project,saaspms.decoritem.project,model_saaspms_decoritem_project,base.group_user,1,1,1,1
 access_saaspms_tags,saaspms.tags,model_saaspms_tags,base.group_user,1,1,1,1
+access_saaspms_decoritem_unit,saaspms.decoritem.unit,model_saaspms_decoritem_unit,base.group_user,1,1,1,1
+access_saaspms_decorpretask_zone,saaspms.decorpretask_zone,model_saaspms_decorpretask_zone,base.group_user,1,1,1,1

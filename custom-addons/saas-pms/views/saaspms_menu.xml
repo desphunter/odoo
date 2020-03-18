@@ -18,7 +18,10 @@
               sequence="20"/>
 
 
-    <!-- pretask menu item -->
+    <!-- tasks menu item -->
+    <menuitem id="menu_decorproject_tasks" name="Tasks" parent="menu_main_saaspms"
+              sequence="30"/>
+
     <act_window id="action_saaspms_decorpretask"
                 name="DecorProject Pretask"
                 res_model="saaspms.decorpretask"
@@ -27,12 +30,51 @@
     <menuitem id="menu_saaspms_decorpretask"
               name="decor pretask"
               action="action_saaspms_decorpretask"
-              parent="menu_main_saaspms"
-              sequence="30"/>
+              parent="menu_decorproject_tasks"
+              sequence="31"/>
+
+    <act_window id="action_saaspms_decorscheduletask"
+                name="DecorProject Pretask"
+                res_model="saaspms.decorscheduletask"
+                view_mode="tree,form"/>
+
+    <menuitem id="menu_saaspms_decorscheduletask"
+              name="decor pretask"
+              action="action_saaspms_decorscheduletask"
+              parent="menu_decorproject_tasks"
+              sequence="32"/>
+
+    <!-- Template menu item -->
+    <menuitem id="menu_decorproject_template" name="Template" parent="menu_main_saaspms"
+              sequence="40"/>
+
+    <act_window id="action_saaspms_template_decoriteminput"
+                name="Input Item Template"
+                res_model="saaspms.decoritem.input"
+                view_mode="tree,form"/>
+
+    <menuitem id="menu_saaspms_template_decoriteminput"
+              name="Input Item Template"
+              action="action_saaspms_template_decoriteminput"
+              parent="menu_decorproject_template"
+              sequence="41"/>
+
+    <record id="action_saaspms_decoritem_project" model="ir.actions.act_window">
+        <field name="name">Project Item Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">saaspms.decoritem.project</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_saaspms_configure_itemtype"
+              name="Project Item Template"
+              action="action_saaspms_decoritem_project"
+              parent="menu_decorproject_template"
+              sequence="42"/>
 
     <!-- Configuration menu item -->
     <menuitem id="menu_decorproject_config" name="Configuration" parent="menu_main_saaspms"
-              sequence="40"/>
+              sequence="50"/>
 
     <act_window id="action_saaspms_decorproject_stage"
                 name="DecorProject Stages"
@@ -43,7 +85,7 @@
               name="stage"
               action="action_saaspms_decorproject_stage"
               parent="menu_decorproject_config"
-              sequence="41"/>
+              sequence="51"/>
 
     <act_window id="action_saaspms_tag"
                 name="operate tags"
@@ -54,44 +96,33 @@
               name="operate tags"
               action="action_saaspms_tag"
               parent="menu_decorproject_config"
-              sequence="42"/>
+              sequence="52"/>
 
-    <act_window id="action_saaspms_itemtype"
-                name="Item Type"
-                res_model="saaspms.decoritem.type"
+    <act_window id="action_saaspms_decorpretask_zone"
+                name="Decor Task Zone"
+                res_model="saaspms.decorpretask.zone"
                 view_mode="tree,form"/>
 
-    <menuitem id="menu_saaspms_configure_itemtype"
-              name="Item Type"
-              action="action_saaspms_itemtype"
+    <menuitem id="menu_saaspms_configure_decorpretask_zone"
+              name="Decor Task Zone"
+              action="action_saaspms_decorpretask_zone"
               parent="menu_decorproject_config"
-              sequence="43"/>
+              sequence="53"/>
 
-    <act_window id="action_saaspms_itemunit"
-                name="Item Unit"
-                res_model="saaspms.decoritem.unit"
-                view_mode="tree,form"/>
 
+    <record id="action_saaspms_decoritem_unit" model="ir.actions.act_window">
+        <field name="name">Decor Item Unit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">saaspms.decoritem.unit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
     <menuitem id="menu_saaspms_configure_itemunit"
               name="Item Unit"
-              action="action_saaspms_itemunit"
+              action="action_saaspms_decoritem_unit"
               parent="menu_decorproject_config"
-              sequence="44"/>
+              sequence="54"/>
 
-    <!-- Template menu item -->
-    <menuitem id="menu_decorproject_template" name="Template" parent="menu_main_saaspms"
-              sequence="50"/>
 
-    <act_window id="action_saaspms_template_decoriteminput"
-                name="Input Item Template"
-                res_model="saaspms.decoriteminput"
-                view_mode="tree,form"/>
-
-    <menuitem id="menu_saaspms_template_decoriteminput"
-              name="Input Item Template"
-              action="action_saaspms_template_decoriteminput"
-              parent="menu_decorproject_template"
-              sequence="51"/>
 </odoo>
 

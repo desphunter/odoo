@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- decoritemunit -->
+        <record id="view_pms_decoritemunit" model="ir.ui.view">
+            <field name="name">saaspms.decoritemunit.list</field>
+            <field name="model">saaspms.decoritem.unit</field>
+            <field name="arch" type="xml">
+                <tree string="Decor Item Unit">
+                    <field name="name"/>
+                    <field name="type_category"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="edit_decoritemunit" model="ir.ui.view">
+            <field name="name">saaspms.decoritemunit.form</field>
+            <field name="model">saaspms.decoritem.unit</field>
+            <field name="arch" type="xml">
+                <form string="Decor Item Unit">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="type_category" string="Item Unit Type Category" widget="radio"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- decoriteminput -->
+
+        <record id="view_pms_iteminput" model="ir.ui.view">
+            <field name="name">saaspms.decoritem.input.list</field>
+            <field name="model">saaspms.decoritem.input</field>
+            <field name="arch" type="xml">
+                <tree string="Decor Item Input">
+                    <field name="name" string="Customer Name"/>
+                    <field name="code" string="Item Input Code"/>
+                    <field name="item_project" string="Item Project"/>
+                    <field name="unit_name" string="Unit Name"/>
+                    <field name="unit_type" string="Unit Type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="edit_decoriteminput" model="ir.ui.view">
+            <field name="name">saaspms.decoritem.input.form</field>
+            <field name="model">saaspms.decoritem.input</field>
+            <field name="arch" type="xml">
+                <form string="Decor Item Input">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Decor Item Input"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="active" invisible="1"/>
+                            </group>
+                             <group>
+                                <field name="code" string="Item Input Code"/>
+                            </group>
+                            <group>
+                                <field name="item_project" string="Item Project"/>
+                            </group>
+                            <group>
+                                <field name="unit_name" string="Unit Name"/>
+                            </group>
+                            <group>
+                                <field name="unit_type" string="Unit Type" widget="radio"/>
+                            </group>
+                            <group>
+                                <field name="description" string="Item Description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- decoritemproject -->
+        <record id="view_pms_decoritemproject" model="ir.ui.view">
+            <field name="name">saaspms.decoritem.project.list</field>
+            <field name="model">saaspms.decoritem.project</field>
+            <field name="arch" type="xml">
+                <tree string="Decor Project Item">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="schedule_stage" string="Schedule Stage"/>
+                    <field name="period_type" string="Period Type"/>
+                    <field name="period_base" string="Period Base"/>
+                    <field name="period_arrange" string="Period Arrange"/>
+                    <field name="schedule_stage_seq" string="Schedule Stage Seq"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="edit_decoritemproject" model="ir.ui.view">
+            <field name="name">saaspms.decoritem.project.form</field>
+            <field name="model">saaspms.decoritem.project</field>
+            <field name="arch" type="xml">
+                <form string="Decor Project Item">
+                    <sheet>
+                        <group>
+                            <div class="oe_title">
+                                <h1>
+                                    <field name="name" placeholder="Decor Item Porject"/>
+                                </h1>
+                            </div>
+                            <group>
+                                <field name="code" string="Item Project Code"/>
+                            </group>
+                            <group>
+                                <field name="active" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="schedule_stage" string="Schedule Stage"/>
+                            </group>
+                            <group>
+                                <field name="priority" string="Priority"/>
+                            </group>
+                            <group>
+                                <field name="period_type" string="Period Type"/>
+                            </group>
+                            <group>
+                                <field name="period_base" string="Period Base"/>
+                            </group>
+                            <group>
+                                <field name="period_arrange" string="Period Arrange"/>
+                            </group>
+                            <group>
+                                <field name="schedule_stage_seq" string="Schedule Stage Seq"/>
+                            </group>
+                            <group>
+                                <field name="description" string="Project Item Description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>
