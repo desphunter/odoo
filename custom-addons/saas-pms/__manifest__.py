@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "saas-pms",
+    'name': "装修工程管理",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -10,7 +10,7 @@
         Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "维声公司",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing

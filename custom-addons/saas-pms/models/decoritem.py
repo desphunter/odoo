@@ -4,67 +4,67 @@ from . import decortask
 
 class decoritemunit(models.Model):
     _name = 'saaspms.decoritem.unit'
-    _description = 'Managing the unit of decor item'
+    _description = '计量单位'
 
-    name = fields.Char(string='Unit Name', required=True)
+    name = fields.Char(string='计量单位', required=True)
     type_category = fields.Selection([
-        ('input', 'input'),
-        ('output', 'output'),
-    ], default='output')
+        ('输入', 'input'),
+        ('输出', 'output'),
+    ], string='计量单位类型', default='output')
 
 
 
 class decoriteminput(models.Model):
     _name = 'saaspms.decoritem.input'
-    _description = 'Managing the decor items template to be selected '
+    _description = '预填模版项'
 
-    name = fields.Char(string='Input Item Name', required=True, translate=True)
-    code = fields.Char(string='Input Item Code')
-    active = fields.Boolean(default=True, help="some")
+    name = fields.Char(string='预填模版项名称', required=True, translate=True)
+    code = fields.Char(string='预填模板项代码')
+    active = fields.Boolean(default=True, string='生效', help="some")
 
-    item_project = fields.Many2one('saaspms.decoritem.project', string='Project Item belong to',
+    item_project = fields.Many2one('saaspms.decoritem.project', string='所属定额项',
                            help="some")
-    unit_name = fields.Many2one('saaspms.decoritem.unit', string='Select a unit',
+    unit_name = fields.Many2one('saaspms.decoritem.unit', string='计量单位',
                                 domain="[('type_category', '=', 'input')]",
                                 help="some")
     unit_type = fields.Selection([
-        ('Integer', 'Integer'),
-        ('Float', 'Float'),
-    ], string='Unit Type', default='Integer')
+        ('整数', 'Integer'),
+        ('浮点', 'Float'),
+    ], string='计量单位类型', default='Integer')
     description = fields.Text(string='Input Item Decription')
 
 
 
 class decoritemproject(models.Model):
     _name = 'saaspms.decoritem.project'
-    _description = 'Managing the item of decor project'
+    _description = '定额模版项'
 
-    name = fields.Char(string='Item Project Name', required=True, translate=True)
-    code = fields.Char(string='Item Project Code')
-    active = fields.Boolean(default=True, help="some")
+    name = fields.Char(string='定额模版名称', required=True, translate=True)
+    code = fields.Char(string='定额模版代码')
+    active = fields.Boolean(default=True, string='生效', help="some")
 
-    @api.model
-    def name_search(self, name, args=None, operator='ilike', limit=100):
-        args = args or []
-        recs = self.browse()
-        if not recs:
-            recs = self.search([('code', operator, name)] + args, limit=limit)
-        return recs.name_get()
+    # @api.model
+    # def name_search(self, name, args=None, operator='ilike', limit=100):
+    #     args = args or []
+    #     recs = self.browse()
+    #     if not recs:
+    #         recs = self.search([('code', operator, name)] + args, limit=limit)
+    #     return recs.name_get()
 
-    schedule_stage = fields.Char(string='Schedule Stage')
+    schedule_stage = fields.Char(string='计划阶段')
     priority = fields.Selection([
-        ('Normal', '0'),
-        ('Critical', '1'),
-    ], string='Schedule Priority', default='0')
+        ('一般', '0'),
+        ('紧急', '1'),
+    ], string='优先级', default='0')
     period_type = fields.Selection([
-        ('fixed', '1'),
-        ('coefficient', '2'),
-    ], string='Period Type', default='1')
-    period_base = fields.Char(string='Period Base (day)')
+        ('固定', '1'),
+        ('系数', '2'),
+    ], string='工期取值', default='1')
+    period_base = fields.Char(string='基数(天)')
     period_arrange = fields.Selection([
-        ('None', '0'),
-        ('OnWork', '1'),
-        ('OffWork', '2'),
-    ], string='Period Arrange', default='1')
-    schedule_stage_seq = fields.Char(string='Sequence of Schedule Stage')
-    description = fields.Text(string='Item Type Description')
+        ('正常', '0'),
+        ('加班', '1'),
+        ('夜班', '2'),
+    ], string='排班', default='1')
+    schedule_stage_seq = fields.Char(string='阶段序号')
+    description = fields.Text(string='描述')

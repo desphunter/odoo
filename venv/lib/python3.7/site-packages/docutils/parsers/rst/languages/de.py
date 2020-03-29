@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# $Id: de.py 7223 2011-11-21 16:43:06Z milde $
+# $Id: de.py 8006 2016-12-22 23:02:44Z milde $
 # Authors: Engelbert Gruber <grubert@users.sourceforge.net>;
 #          Lea Wiemann <LeWiemann@gmail.com>
 # Copyright: This module has been placed in the public domain.
@@ -30,13 +30,14 @@ directives = {
       'warnung': 'warning',
       'ermahnung': 'admonition',
       'kasten': 'sidebar',
-      'seitenkasten': 'sidebar',
+      'seitenkasten': 'sidebar', # kept for backwards compatibiltity
+      'seitenleiste': 'sidebar',
       'thema': 'topic',
-      'zeilen-block': 'line-block',
+      'zeilenblock': 'line-block',
       'parsed-literal (translation required)': 'parsed-literal',
       'rubrik': 'rubric',
       'epigraph': 'epigraph',
-      'highlights (translation required)': 'highlights',
+      'highlights': 'highlights',
       'pull-quote': 'pull-quote', # commonly used in German too
       'seitenansprache': 'pull-quote', # cf. http://www.typografie.info/2/wiki.php?title=Seitenansprache
       'zusammengesetzt': 'compound',
@@ -45,7 +46,7 @@ directives = {
       #'fragen': 'questions',
       'tabelle': 'table',
       'csv-tabelle': 'csv-table',
-      'list-table (translation required)': 'list-table',
+      'listentabelle': 'list-table',
       'mathe': 'math',
       'formel': 'math',
       'meta': 'meta',
@@ -62,14 +63,14 @@ directives = {
       'datum': 'date',
       'klasse': 'class',
       'rolle': 'role',
-      'default-role (translation required)': 'default-role',
-      'title (translation required)': 'title',
+      'standardrolle': 'default-role',
+      'titel': 'title',
       'inhalt': 'contents',
-      'kapitel-nummerierung': 'sectnum',
-      'abschnitts-nummerierung': 'sectnum',
-      'linkziel-fußfnoten': 'target-notes',
-      'header (translation required)': 'header',
-      'footer (translation required)': 'footer',
+      'kapitelnummerierung': 'sectnum',
+      'abschnittsnummerierung': 'sectnum',
+      'linkziel-fußnoten': 'target-notes',
+      'kopfzeilen': 'header',
+      'fußzeilen': 'footer',
       #u'fußfnoten': 'footnotes',
       #'zitate': 'citations',
       }
@@ -86,7 +87,8 @@ roles = {
       'titel-referenz': 'title-reference',
       'pep-referenz': 'pep-reference',
       'rfc-referenz': 'rfc-reference',
-      'betonung': 'emphasis',
+      'betonung': 'emphasis', # for backwards compatibility
+      'betont': 'emphasis',
       'fett': 'strong',
       'wörtlich': 'literal',
       'mathe': 'math',

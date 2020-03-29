@@ -7,9 +7,9 @@
             <field name="name">saaspms.decoritemunit.list</field>
             <field name="model">saaspms.decoritem.unit</field>
             <field name="arch" type="xml">
-                <tree string="Decor Item Unit">
-                    <field name="name"/>
-                    <field name="type_category"/>
+                <tree string="计量单位">
+                    <field name="name" string="名称"/>
+                    <field name="type_category" string="单位类型"/>
                 </tree>
             </field>
         </record>
@@ -18,14 +18,14 @@
             <field name="name">saaspms.decoritemunit.form</field>
             <field name="model">saaspms.decoritem.unit</field>
             <field name="arch" type="xml">
-                <form string="Decor Item Unit">
+                <form string="计量单位">
                     <sheet>
                         <group>
                             <group>
-                                <field name="name"/>
+                                <field name="name" string="名称"/>
                             </group>
                             <group>
-                                <field name="type_category" string="Item Unit Type Category" widget="radio"/>
+                                <field name="type_category" string="单位类型" widget="radio"/>
                             </group>
                         </group>
                     </sheet>
@@ -40,12 +40,12 @@
             <field name="name">saaspms.decoritem.input.list</field>
             <field name="model">saaspms.decoritem.input</field>
             <field name="arch" type="xml">
-                <tree string="Decor Item Input">
-                    <field name="name" string="Customer Name"/>
-                    <field name="code" string="Item Input Code"/>
-                    <field name="item_project" string="Item Project"/>
-                    <field name="unit_name" string="Unit Name"/>
-                    <field name="unit_type" string="Unit Type"/>
+                <tree string="预填模版项">
+                    <field name="name" string="名称"/>
+                    <field name="code" string="代码"/>
+                    <field name="item_project" string="定额项"/>
+                    <field name="unit_name" string="计量单位"/>
+                    <field name="unit_type" string="单位类型"/>
                 </tree>
             </field>
         </record>
@@ -54,31 +54,31 @@
             <field name="name">saaspms.decoritem.input.form</field>
             <field name="model">saaspms.decoritem.input</field>
             <field name="arch" type="xml">
-                <form string="Decor Item Input">
+                <form string="预填模版项">
                     <sheet>
                         <div class="oe_title">
                             <h1>
-                                <field name="name" placeholder="Decor Item Input"/>
+                                <field name="name" placeholder="Decor Item Input" string="名称"/>
                             </h1>
                         </div>
                         <group>
                             <group>
-                                <field name="active" invisible="1"/>
+                                <field name="active" invisible="1" string="生效"/>
                             </group>
                              <group>
-                                <field name="code" string="Item Input Code"/>
+                                <field name="code" string="代码"/>
                             </group>
                             <group>
-                                <field name="item_project" string="Item Project"/>
+                                <field name="item_project" string="定额项"/>
                             </group>
                             <group>
-                                <field name="unit_name" string="Unit Name"/>
+                                <field name="unit_name" string="计量名称"/>
                             </group>
                             <group>
-                                <field name="unit_type" string="Unit Type" widget="radio"/>
+                                <field name="unit_type" string="单位类型" widget="radio"/>
                             </group>
                             <group>
-                                <field name="description" string="Item Description"/>
+                                <field name="description" string="备注"/>
                             </group>
                         </group>
                     </sheet>
@@ -92,14 +92,14 @@
             <field name="name">saaspms.decoritem.project.list</field>
             <field name="model">saaspms.decoritem.project</field>
             <field name="arch" type="xml">
-                <tree string="Decor Project Item">
-                    <field name="code"/>
-                    <field name="name"/>
-                    <field name="schedule_stage" string="Schedule Stage"/>
-                    <field name="period_type" string="Period Type"/>
-                    <field name="period_base" string="Period Base"/>
-                    <field name="period_arrange" string="Period Arrange"/>
-                    <field name="schedule_stage_seq" string="Schedule Stage Seq"/>
+                <tree string="定额模版项">
+                    <field name="code" string="代码"/>
+                    <field name="name" string="名称"/>
+                    <field name="schedule_stage" string="计划阶段"/>
+                    <field name="period_type" string="工期取值"/>
+                    <field name="period_base" string="基数(天)"/>
+                    <field name="period_arrange" string="排班"/>
+                    <field name="schedule_stage_seq" string="阶段序号"/>
                 </tree>
             </field>
         </record>
@@ -108,40 +108,40 @@
             <field name="name">saaspms.decoritem.project.form</field>
             <field name="model">saaspms.decoritem.project</field>
             <field name="arch" type="xml">
-                <form string="Decor Project Item">
+                <form string="定额模版项">
                     <sheet>
                         <group>
                             <div class="oe_title">
                                 <h1>
-                                    <field name="name" placeholder="Decor Item Porject"/>
+                                    <field name="name" placeholder="Decor Item Porject" string="名称"/>
                                 </h1>
                             </div>
                             <group>
-                                <field name="code" string="Item Project Code"/>
+                                <field name="code" string="代码"/>
                             </group>
                             <group>
-                                <field name="active" invisible="1"/>
+                                <field name="active" invisible="1" string="生效"/>
                             </group>
                             <group>
-                                <field name="schedule_stage" string="Schedule Stage"/>
+                                <field name="schedule_stage" string="计划阶段"/>
                             </group>
                             <group>
-                                <field name="priority" string="Priority"/>
+                                <field name="priority" string="优先级"/>
                             </group>
                             <group>
-                                <field name="period_type" string="Period Type"/>
+                                <field name="period_type" string="工期取值"/>
                             </group>
                             <group>
-                                <field name="period_base" string="Period Base"/>
+                                <field name="period_base" string="基数(天)"/>
                             </group>
                             <group>
-                                <field name="period_arrange" string="Period Arrange"/>
+                                <field name="period_arrange" string="排班"/>
                             </group>
                             <group>
-                                <field name="schedule_stage_seq" string="Schedule Stage Seq"/>
+                                <field name="schedule_stage_seq" string="阶段序号"/>
                             </group>
                             <group>
-                                <field name="description" string="Project Item Description"/>
+                                <field name="description" string="描述"/>
                             </group>
                         </group>
                     </sheet>

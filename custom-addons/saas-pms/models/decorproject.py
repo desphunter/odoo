@@ -6,28 +6,29 @@ from . import decortask
 
 class DecorProjectStage(models.Model):
     _name = 'saaspms.decorproject.stage'
-    _description = 'DecorProject Stage Types'
+    _description = '流程阶段'
     _order = 'sequence, id'
 
     # def _get_default_decorproject_ids(self):
     #     default_decorproject_id = self.env.context.get('default_decorproject_id')
     #     return [default_decorproject_id] if default_decorproject_id else None
 
-    name = fields.Char(string='Stage Name', required=True, translate=True)
-    sequence = fields.Integer(default=1)
-    active = fields.Boolean(default=True)
-    fold = fields.Boolean(default=False)
+    name = fields.Char(string='阶段名称', required=True, translate=True)
+    sequence = fields.Integer(string='阶段序号', default=1)
+    active = fields.Boolean(string='生效', default=True)
+    fold = fields.Boolean(string='收起', default=False)
     state = fields.Selection([
-        ('ongoing', 'ongoing'),
-        ('finished', 'finished'),
-        ('confirmed', 'confirmed'),
-    ], default='ongoing')
+        ('正在进行', 'ongoing'),
+        ('完成', 'finished'),
+        ('确认', 'confirmed'),
+    ], string='状态', default='ongoing')
 
 
 
 class DecorProject(models.Model):
     _name = "saaspms.decorproject"
-    _description = "To manage the decoration work within a whole project."
+    _description = "装修项目"
+    _inherit = ['portal.mixin']
     _order = "sequence, name, id"
 
     def _compute_pretask_count(self):
@@ -59,30 +60,58 @@ class DecorProject(models.Model):
     #         project.access_url = '/my/project/%s' % project.id
 
 
-    name = fields.Char("Name", index=True, required=True, tracking=True)
-    active = fields.Boolean(default=True,
-        help="If the active field is set to False, it will allow you to hide the project without removing it.")
+    name = fields.Char(string="项目名称", index=True, required=True, tracking=True, translate=True)
+    active = fields.Boolean(default=True, string='生效',
+                            help="If the active field is set to False, it will allow you to hide the project without removing it.")
     sequence = fields.Integer(default=10, help="Gives the sequence order when displaying a list of Projects.")
 
-    date_start = fields.Date(string='Start Date')
-    date_required = fields.Date(string='Expiration Date', index=True, tracking=True)
-    decor_address = fields.Text(string='Decor Address')
+    date_start = fields.Date(string='起始日期')
+    date_required = fields.Date(string='截止日期', index=True, tracking=True)
+    decor_address = fields.Text(string='装修地址')
 
-    stage_id = fields.Many2one('saaspms.decorproject.stage', default=_default_stage,
+    stage_id = fields.Many2one('saaspms.decorproject.stage', default=_default_stage, string='阶段ID',
                                group_expand='_group_expand_stage_id')
-    state = fields.Selection(related='stage_id.state')
+    state = fields.Selection(string='状态', related='stage_id.state')
 
-    pretask_count = fields.Integer(compute='_compute_pretask_count', string="PreTask Count")
-    decorpretasks = fields.One2many('saaspms.decorpretask', 'decorproject_id', string='Decor PreTask Activities')
-    decorpretask_ids = fields.One2many('saaspms.decorpretask', 'decorproject_id', string='Decor Pretasks')
+    pretask_count = fields.Integer(compute='_compute_pretask_count', string="预填任务个数")
+    decorpretasks = fields.One2many('saaspms.decorpretask', 'decorproject_id', string='预填单')
+    decorpretask_ids = fields.One2many('saaspms.decorpretask', 'decorproject_id', string='预填单ID集')
 
-    scheduletask_count = fields.Integer(compute='_compute_scheduletask_count', string='Schedule Task Count')
-    decorscheduletasks = fields.One2many('saaspms.decorscheduletask', 'decorproject_id', string="Decor Task Activities")
-    decorscheduletask_ids = fields.One2many('saaspms.decorscheduletask', 'decorproject_id', string='Decor Tasks')
+    scheduletask_count = fields.Integer(compute='_compute_scheduletask_count', string='计划任务个数')
+    decorscheduletasks = fields.One2many('saaspms.decorscheduletask', 'decorproject_id', string="计划任务集")
+    decorscheduletask_ids = fields.One2many('saaspms.decorscheduletask', 'decorproject_id', string='计划任务ID集')
 
     # _sql_constraints = [
     #     ('project_date_greater', 'check(date >= date_start)', 'Error! project start-date must be lower than project end-date.')
     # ]
+
+    # def _compute_access_url(self):
+    #     super(Project, self)._compute_access_url()
+    #     for project in self:
+    #         project.access_url = '/my/project/%s' % project.id
+    #
+    # def _compute_access_warning(self):
+    #     super(Project, self)._compute_access_warning()
+    #     for project in self.filtered(lambda x: x.privacy_visibility != 'portal'):
+    #         project.access_warning = _(
+    #             "The project cannot be shared with the recipient(s) because the privacy of the project is too restricted. Set the privacy to 'Visible by following customers' in order to make it accessible by the recipient(s).")
+
+
+    # ---------------------------------------------------
+    #  CRUD
+    # ---------------------------------------------------
+
+    @api.model
+    def create(self, vals):
+        # Prevent double project creation
+        self = self.with_context(mail_create_nosubscribe=True)
+        project = super(Project, self).create(vals)
+        if not vals.get('subtask_project_id'):
+            project.subtask_project_id = project.id
+        if project.privacy_visibility == 'portal' and project.partner_id:
+            project.message_subscribe(project.partner_id.ids)
+        return project
+
 
     def unlink(self):
         # Check project is empty
@@ -134,7 +163,7 @@ class DecorProject(models.Model):
             project_item = self.env['saaspms.decoritem.project'].search([('code', '=', project_item_code)])
             for pi in project_item:
                 project_item_name = project_item.name
-                project_schedule_stage_seq = project_item.schedule_stage
+                project_schedule_stage_seq = project_item.schedule_stagezh_CN.mo
 
                 if project_item.period_type == 'fixed':
                     offset_days = project_item.period_base
@@ -183,10 +212,10 @@ class DecorProject(models.Model):
 class ProjectTags(models.Model):
     """ Tags of project's tasks """
     _name = "saaspms.tags"
-    _description = "Saas PMS Tags"
+    _description = "标签"
 
-    name = fields.Char('Tag Name', required=True)
-    color = fields.Integer(string='Color Index')
+    name = fields.Char('标签名称', required=True)
+    color = fields.Integer(string='颜色')
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Tag name already exists!"),

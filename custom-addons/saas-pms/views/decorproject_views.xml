@@ -39,13 +39,13 @@
           <field name="name">saaspms.pms_decorproject.list</field>
           <field name="model">saaspms.decorproject</field>
           <field name="arch" type="xml">
-              <tree>
-                  <field name="id"/>
-                  <field name="name"/>
-                  <field name="active"/>
-                  <field name="date_start"/>
-                  <field name="date_required"/>
-                  <field name="pretask_count"/>
+              <tree string="装修项目">
+                  <field name="id" string="ID"/>
+                  <field name="name" string="名称"/>
+                  <field name="active" string="生效"/>
+                  <field name="date_start" string="起始日期"/>
+                  <field name="date_required" string="完成日期"/>
+                  <field name="pretask_count" string="预填任务数"/>
               </tree>
           </field>
       </record>
@@ -54,23 +54,23 @@
           <field name="name">saaspms.pms_decorproject.form</field>
           <field name="model">saaspms.decorproject</field>
           <field name="arch" type="xml">
-              <form string="Project">
+              <form string="装修项目">
                   <header>
-                      <button string="Load DecorPretasks" name="open_decorpretasks" type="object" class="btn-primary o_open_pretasks"
+                      <button string="加载预填任务" name="open_decorpretasks" type="object" class="btn-primary o_open_pretasks"
                               attrs="{'invisible' : [('stage_id', '!=', 1)]}"/>
-                      <button string="Create Schedule Task" name="trans_pretoschedule_tasks" type="object" class="btn-primary o_create_schedule_tasks"
+                      <button string="生成计划任务基础" name="trans_pretoschedule_tasks" type="object" class="btn-primary o_create_schedule_tasks"
                               attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
-                      <button string="Load ScheduleTasks" name="open_decorscheduletasks" type="object" class="btn-primary o_open_scheduletasks"
+                      <button string="显示计划任务" name="open_decorscheduletasks" type="object" class="btn-primary o_open_scheduletasks"
                               attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
-                      <button string="Automake Schedule" name="automake_schedule" type="object" class="btn-primary o_maek_schedulet"
+                      <button string="自动排期" name="automake_schedule" type="object" class="btn-primary o_maek_schedulet"
                               attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
                       <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}"/>
                   </header>
-                  <sheet string="Decor Project">
+                  <sheet string="装修项目">
                       <div class="oe_button_box" name="button_box" groups="base.group_user">
                           <button class="oe_stat_button" type="action"
                                   name="saas-pms.view_decorproject_decorpretasks_all" icon="fa-tasks">
-                              <field string="Tasks" name="pretask_count" widget="statinfo"/>
+                              <field string="预填任务" name="pretask_count" widget="statinfo"/>
                           </button>
 <!--                          <button class="oe_stat_button" type="action"-->
 <!--                                  name="view_decorproject_decortasks_all" icon="fa-tasks">-->
@@ -79,18 +79,18 @@
                       </div>
                       <div class="oe_title">
                           <h1>
-                              <field name="name" placeholder="Project Name"/>
+                              <field name="name" placeholder="Project Name" string="名称"/>
                           </h1>
                       </div>
                       <notebook>
-                          <page name="settings" string="Settings">
+                          <page name="settings" string="参数配置">
                               <group>
-                                  <field name="active" invisibe="1"/>
-                                  <field name="date_start" string="Date Start"/>
-                                  <field name="date_required" string="Date Required"/>
+                                  <field name="active" invisibe="1" string="生效"/>
+                                  <field name="date_start" string="起始日期"/>
+                                  <field name="date_required" string="完成日期"/>
                               </group>
                               <group>
-                                  <field name="decor_address" string="Address"/>
+                                  <field name="decor_address" string="实施地址"/>
                               </group>
                           </page>
                       </notebook>

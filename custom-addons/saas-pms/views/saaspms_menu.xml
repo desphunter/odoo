@@ -1,124 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Top menu item -->
-    <menuitem name="DecorProject"
+    <menuitem name="装修工程"
               id="menu_main_saaspms"
               sequence="10"/>
 
     <!-- project menu item -->
     <act_window id="action_saaspms_decorproject"
-                name="operate decorprojects"
+                name="装修项目"
                 res_model="saaspms.decorproject"
                 view_mode="tree,form"/>
 
     <menuitem id="menu_saaspms_decorproject"
-              name="decorproject"
+              name="装修项目"
               action="action_saaspms_decorproject"
               parent="menu_main_saaspms"
               sequence="20"/>
 
 
     <!-- tasks menu item -->
-    <menuitem id="menu_decorproject_tasks" name="Tasks" parent="menu_main_saaspms"
+    <menuitem id="menu_decorproject_tasks" name="任务" parent="menu_main_saaspms"
               sequence="30"/>
 
     <act_window id="action_saaspms_decorpretask"
-                name="DecorProject Pretask"
+                name="预填任务"
                 res_model="saaspms.decorpretask"
                 view_mode="tree,form"/>
 
     <menuitem id="menu_saaspms_decorpretask"
-              name="decor pretask"
+              name="预填任务"
               action="action_saaspms_decorpretask"
               parent="menu_decorproject_tasks"
               sequence="31"/>
 
     <act_window id="action_saaspms_decorscheduletask"
-                name="DecorProject Pretask"
+                name="计划任务"
                 res_model="saaspms.decorscheduletask"
                 view_mode="tree,form"/>
 
     <menuitem id="menu_saaspms_decorscheduletask"
-              name="decor pretask"
+              name="计划任务"
               action="action_saaspms_decorscheduletask"
               parent="menu_decorproject_tasks"
               sequence="32"/>
 
     <!-- Template menu item -->
-    <menuitem id="menu_decorproject_template" name="Template" parent="menu_main_saaspms"
+    <menuitem id="menu_decorproject_template" name="模板管理" parent="menu_main_saaspms"
               sequence="40"/>
 
     <act_window id="action_saaspms_template_decoriteminput"
-                name="Input Item Template"
+                name="预填模板"
                 res_model="saaspms.decoritem.input"
                 view_mode="tree,form"/>
 
     <menuitem id="menu_saaspms_template_decoriteminput"
-              name="Input Item Template"
+              name="预填模板"
               action="action_saaspms_template_decoriteminput"
               parent="menu_decorproject_template"
               sequence="41"/>
 
     <record id="action_saaspms_decoritem_project" model="ir.actions.act_window">
-        <field name="name">Project Item Template</field>
+        <field name="name">定额模板</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">saaspms.decoritem.project</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <menuitem id="menu_saaspms_configure_itemtype"
-              name="Project Item Template"
+              name="定额模板"
               action="action_saaspms_decoritem_project"
               parent="menu_decorproject_template"
               sequence="42"/>
 
     <!-- Configuration menu item -->
-    <menuitem id="menu_decorproject_config" name="Configuration" parent="menu_main_saaspms"
+    <menuitem id="menu_decorproject_config" name="基础配置" parent="menu_main_saaspms"
               sequence="50"/>
 
     <act_window id="action_saaspms_decorproject_stage"
-                name="DecorProject Stages"
+                name="流程阶段"
                 res_model="saaspms.decorproject.stage"
                 view_mode="tree,form"/>
 
     <menuitem id="menu_saaspms_configure_decorproject_stage"
-              name="stage"
+              name="流程阶段"
               action="action_saaspms_decorproject_stage"
               parent="menu_decorproject_config"
               sequence="51"/>
 
     <act_window id="action_saaspms_tag"
-                name="operate tags"
+                name="标签"
                 res_model="saaspms.tags"
                 view_mode="tree,form"/>
 
     <menuitem id="menu_saaspms_configure_tags"
-              name="operate tags"
+              name="标签"
               action="action_saaspms_tag"
               parent="menu_decorproject_config"
               sequence="52"/>
 
     <act_window id="action_saaspms_decorpretask_zone"
-                name="Decor Task Zone"
+                name="任务区域"
                 res_model="saaspms.decorpretask.zone"
                 view_mode="tree,form"/>
 
     <menuitem id="menu_saaspms_configure_decorpretask_zone"
-              name="Decor Task Zone"
+              name="任务区域"
               action="action_saaspms_decorpretask_zone"
               parent="menu_decorproject_config"
               sequence="53"/>
 
 
     <record id="action_saaspms_decoritem_unit" model="ir.actions.act_window">
-        <field name="name">Decor Item Unit</field>
+        <field name="name">计量单位</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">saaspms.decoritem.unit</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <menuitem id="menu_saaspms_configure_itemunit"
-              name="Item Unit"
+              name="计量单位"
               action="action_saaspms_decoritem_unit"
               parent="menu_decorproject_config"
               sequence="54"/>

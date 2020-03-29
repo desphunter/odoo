@@ -34,7 +34,7 @@ import logging
 import sys
 
 __all__ = [
-            'LibaryException',
+            'LibraryException',
             'LibraryNotFoundException',
             'NoLibraryCandidatesException',
             'LibraryNotLoadedException',
@@ -48,19 +48,19 @@ __all__ = [
 _LOGGER = logging.getLogger('usb.libloader')
 
 
-class LibaryException(OSError):
+class LibraryException(OSError):
     pass
 
-class LibraryNotFoundException(LibaryException):
+class LibraryNotFoundException(LibraryException):
     pass
 
 class NoLibraryCandidatesException(LibraryNotFoundException):
     pass
 
-class LibraryNotLoadedException(LibaryException):
+class LibraryNotLoadedException(LibraryException):
     pass
 
-class LibraryMissingSymbolsException(LibaryException):
+class LibraryMissingSymbolsException(LibraryException):
     pass
 
 
@@ -140,9 +140,9 @@ def load_locate_library(candidates, cygwin_lib, name,
     * name          -- lib identifier (for logging). Defaults to None.
     * win_cls       -- class that is used to instantiate the library on
                        win32 platforms. Defaults to None (-> ctypes.CDLL).
-    * other_cls     -- library class for cygwin platforms.
+    * cygwin_cls    -- library class for cygwin platforms.
                        Defaults to None (-> ctypes.CDLL).
-    * cygwin_cls    -- library class for all other platforms.
+    * others_cls    -- library class for all other platforms.
                        Defaults to None (-> ctypes.CDLL).
     * find_library  -- see locate_library(). Defaults to None.
     * check_symbols -- either None or a list of symbols that the loaded lib
