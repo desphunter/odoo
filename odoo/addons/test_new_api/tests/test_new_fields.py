@@ -1412,6 +1412,27 @@ class TestFields(common.TransactionCase):
         self.assertEqual(count(message), 1)
         self.assertEqual(count(message1), 0)
 
+    def test_85_binary_guess_zip(self):
+        from odoo.addons.base.tests.test_mimetypes import ZIP
+        # Regular ZIP files can be uploaded by non-admin users
+        self.env['test_new_api.binary_svg'].with_user(
+            self.env.ref('base.user_demo'),
+        ).create({
+            'name': 'Test without attachment',
+            'image_wo_attachment': base64.b64decode(ZIP),
+        })
+
+    def test_86_text_base64_guess_svg(self):
+        from odoo.addons.base.tests.test_mimetypes import SVG
+        with self.assertRaises(UserError) as e:
+            self.env['test_new_api.binary_svg'].with_user(
+                self.env.ref('base.user_demo'),
+            ).create({
+                'name': 'Test without attachment',
+                'image_wo_attachment': SVG.decode("utf-8"),
+            })
+        self.assertEqual(e.exception.name, 'Only admins can upload SVG files.')
+
     def test_90_binary_svg(self):
         from odoo.addons.base.tests.test_mimetypes import SVG
         # This should work without problems
@@ -2304,3 +2325,16 @@ class TestMany2oneReference(common.TransactionCase):
         # fake record to emulate the unlink of a non-existant record
         foo = m.browse(1 if not ids[0] else (ids[0] + 1))
         self.assertTrue(foo.unlink())
+
+
+@common.tagged('selection_abstract')
+class TestSelectionDeleteUpdate(common.TransactionCase):
+
+    MODEL_ABSTRACT = 'test_new_api.state_mixin'
+
+    def test_unlink_asbtract(self):
+        self.env['ir.model.fields.selection'].search([
+            ('field_id.model', '=', self.MODEL_ABSTRACT),
+            ('field_id.name', '=', 'state'),
+            ('value', '=', 'confirmed'),
+        ], limit=1).unlink()
