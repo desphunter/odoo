@@ -28,7 +28,6 @@ class DecorProjectStage(models.Model):
 class DecorProject(models.Model):
     _name = "saaspms.decorproject"
     _description = "装修项目"
-    _inherit = ['portal.mixin']
     _order = "sequence, name, id"
 
     def _compute_pretask_count(self):
@@ -72,6 +71,10 @@ class DecorProject(models.Model):
     stage_id = fields.Many2one('saaspms.decorproject.stage', default=_default_stage, string='阶段ID',
                                group_expand='_group_expand_stage_id')
     state = fields.Selection(string='状态', related='stage_id.state')
+
+    color = fields.Integer(string='色标')
+
+    city_id = fields.Many2one('saaspms.decorproject.city', string='城市ID')
 
     pretask_count = fields.Integer(compute='_compute_pretask_count', string="预填任务个数")
     decorpretasks = fields.One2many('saaspms.decorpretask', 'decorproject_id', string='预填单')
@@ -219,4 +222,16 @@ class ProjectTags(models.Model):
 
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Tag name already exists!"),
+    ]
+
+
+class ProjectCity(models.Model):
+    _name = "saaspms.decorproject.city"
+    _description = "所在城市"
+
+    name = fields.Char('城市名称', required=True)
+    province = fields.Char('省份名称')
+
+    _sql_constraints = [
+        ('name_uniq', 'unique (name)', "City name already exists!"),
     ]

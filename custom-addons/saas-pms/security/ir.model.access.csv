@@ -6,5 +6,6 @@ access_saaspms_decorscheduletask,saaspms.decorscheduletask,model_saaspms_decorsc
 access_saaspms_decoritem_input,saaspms.decoritem.input,model_saaspms_decoritem_input,base.group_user,1,1,1,1
 access_saaspms_decoritem_project,saaspms.decoritem.project,model_saaspms_decoritem_project,base.group_user,1,1,1,1
 access_saaspms_tags,saaspms.tags,model_saaspms_tags,base.group_user,1,1,1,1
+access_saaspms_decorproject_city,saaspms.decorproject.city,model_saaspms_decorproject_city,base.group_user,1,1,1,1
 access_saaspms_decoritem_unit,saaspms.decoritem.unit,model_saaspms_decoritem_unit,base.group_user,1,1,1,1
 access_saaspms_decorpretask_zone,saaspms.decorpretask_zone,model_saaspms_decorpretask_zone,base.group_user,1,1,1,1

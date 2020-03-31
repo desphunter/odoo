@@ -5,11 +5,31 @@
               id="menu_main_saaspms"
               sequence="10"/>
 
+
     <!-- project menu item -->
-    <act_window id="action_saaspms_decorproject"
-                name="装修项目"
-                res_model="saaspms.decorproject"
-                view_mode="tree,form"/>
+<!--    <act_window id="action_saaspms_decorproject"-->
+<!--                name="装修项目"-->
+<!--                res_model="saaspms.decorproject"-->
+<!--                view_mode="tree,form"/>-->
+
+    <record id="open_view_decorproject_list_my" model="ir.actions.act_window">
+        <field name="name">装修项目</field>
+        <field name="res_model">saaspms.decorproject</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="view_decorproject_filter"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                新增一个装修项目
+            </p><p>
+            With just a quick glance on the Odoo employee screen, you
+            can easily find all the information you need for each person;
+            contact data, job position, availability, etc.
+        </p>
+        </field>
+    </record>
 
     <menuitem id="menu_saaspms_decorproject"
               name="装修项目"
@@ -17,6 +37,12 @@
               parent="menu_main_saaspms"
               sequence="20"/>
 
+                <menuitem
+                id="menu_saaspms_decorproject_decorproject"
+                name="装修项目"
+                action="open_view_decorproject_list_my"
+                parent="menu_saaspms_decorproject"
+                sequence="11"/>
 
     <!-- tasks menu item -->
     <menuitem id="menu_decorproject_tasks" name="任务" parent="menu_main_saaspms"
@@ -108,6 +134,17 @@
               action="action_saaspms_decorpretask_zone"
               parent="menu_decorproject_config"
               sequence="53"/>
+
+    <act_window id="action_saaspms_decorproject_city"
+                name="城市"
+                res_model="saaspms.decorproject.city"
+                view_mode="tree,form"/>
+
+    <menuitem id="menu_saaspms_configure_tags"
+              name="城市"
+              action="action_saaspms_decorproject_city"
+              parent="menu_decorproject_config"
+              sequence="54"/>
 
 
     <record id="action_saaspms_decoritem_unit" model="ir.actions.act_window">
