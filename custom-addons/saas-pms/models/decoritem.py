@@ -10,7 +10,7 @@ class decoritemunit(models.Model):
     type_category = fields.Selection([
         ('输入', 'input'),
         ('输出', 'output'),
-    ], string='计量单位类型', default='output')
+    ], string='计量单位类型', default='输出')
 
 
 
@@ -30,7 +30,7 @@ class decoriteminput(models.Model):
     unit_type = fields.Selection([
         ('整数', 'Integer'),
         ('浮点', 'Float'),
-    ], string='计量单位类型', default='Integer')
+    ], string='计量单位类型', default='整数')
     description = fields.Text(string='Input Item Decription')
 
 
@@ -55,16 +55,16 @@ class decoritemproject(models.Model):
     priority = fields.Selection([
         ('一般', '0'),
         ('紧急', '1'),
-    ], string='优先级', default='0')
+    ], string='优先级', default='一般')
     period_type = fields.Selection([
         ('固定', '1'),
         ('系数', '2'),
-    ], string='工期取值', default='1')
+    ], string='工期取值', default='固定')
     period_base = fields.Char(string='基数(天)')
     period_arrange = fields.Selection([
         ('正常', '0'),
         ('加班', '1'),
         ('夜班', '2'),
-    ], string='排班', default='1')
+    ], string='排班', default='加班')
     schedule_stage_seq = fields.Char(string='阶段序号')
     description = fields.Text(string='描述')

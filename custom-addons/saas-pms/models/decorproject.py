@@ -50,8 +50,18 @@ class DecorProject(models.Model):
         return Stage.search([], limit=1)
 
     @api.model
+    def _default_city(self):
+        City = self.env['saaspms.decorproject.city']
+        return City.search([], limit=1)
+
+
+    @api.model
     def _group_expand_stage_id(self, stages, domain, order):
         return stages.search([], order=order)
+
+    @api.model
+    def _group_expand_city_id(self, city, domain, order):
+        return city.search([], order=order)
 
     # def _compute_access_url(self):
     #     super(DecorProject, self)._compute_access_url()
@@ -74,7 +84,8 @@ class DecorProject(models.Model):
 
     color = fields.Integer(string='色标')
 
-    city_id = fields.Many2one('saaspms.decorproject.city', string='城市ID')
+    city_id = fields.Many2one('saaspms.decorproject.city', default=_default_city, string='城市ID',
+                              group_expand='_group_expand_city_id')
 
     pretask_count = fields.Integer(compute='_compute_pretask_count', string="预填任务个数")
     decorpretasks = fields.One2many('saaspms.decorpretask', 'decorproject_id', string='预填单')

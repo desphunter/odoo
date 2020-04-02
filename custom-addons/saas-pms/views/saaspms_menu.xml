@@ -7,10 +7,10 @@
 
 
     <!-- project menu item -->
-<!--    <act_window id="action_saaspms_decorproject"-->
-<!--                name="装修项目"-->
-<!--                res_model="saaspms.decorproject"-->
-<!--                view_mode="tree,form"/>-->
+    <act_window id="action_saaspms_decorproject"
+                name="装修项目"
+                res_model="saaspms.decorproject"
+                view_mode="tree,form"/>
 
     <record id="open_view_decorproject_list_my" model="ir.actions.act_window">
         <field name="name">装修项目</field>
@@ -42,7 +42,7 @@
                 name="装修项目"
                 action="open_view_decorproject_list_my"
                 parent="menu_saaspms_decorproject"
-                sequence="11"/>
+                sequence="21"/>
 
     <!-- tasks menu item -->
     <menuitem id="menu_decorproject_tasks" name="任务" parent="menu_main_saaspms"

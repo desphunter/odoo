@@ -39,8 +39,7 @@
           <field name="model">saaspms.decorproject</field>
           <field name="arch" type="xml">
               <search string="装修项目">
-                  <field name="name" string="装修项目"
-                         filter_domain="[('active', '=', True)]"/>
+                  <field name="name" string="装修项目"/>
                   <field name="stage_id"/>
 <!--                  <separator/>-->
 <!--                  <filter string="Unread Messages" name="message_needaction"-->
@@ -103,12 +102,9 @@
                   </header>
                   <sheet string="装修项目">
                       <div class="oe_button_box" name="button_box" groups="base.group_user">
-                          <button class="oe_stat_button" type="action"
-                                  name="saas-pms.view_decorproject_decorpretasks_all" icon="fa-tasks">
-                              <field string="预填任务" name="pretask_count" widget="statinfo"/>
-                          </button>
 <!--                          <button class="oe_stat_button" type="action"-->
-<!--                                  name="view_decorproject_decortasks_all" icon="fa-tasks">-->
+<!--                                  name="saas-pms.view_decorproject_decorpretasks_all" icon="fa-tasks">-->
+<!--                              <field string="预填任务" name="pretask_count" widget="statinfo"/>-->
 <!--                          </button>-->
                       </div>
                       <div class="oe_title">
