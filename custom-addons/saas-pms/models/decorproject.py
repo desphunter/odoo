@@ -140,17 +140,17 @@ class DecorProject(models.Model):
     #  Actions
     # ---------------------------------------------------
 
-    def open_decorpretasks(self):
-        ctx = dict(self._context)
-        ctx.update({'search_default_decorproject_id': self.id})
-        action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'view_decorproject_decorpretasks_all')
-        return dict(action, context=ctx)
+    # def open_decorpretasks(self):
+    #     ctx = dict(self._context)
+    #     ctx.update({'search_default_decorproject_id': self.id})
+    #     action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'view_decorproject_decorpretasks_all')
+    #     return dict(action, context=ctx)
 
-    def open_decorscheduletasks(self):
-        ctx = dict(self._context)
-        ctx.update({'search_default_decorproject_id': self.id})
-        action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'view_decorproject_decorscheduletasks_all')
-        return dict(action, context=ctx)
+    # def open_decorscheduletasks(self):
+    #     ctx = dict(self._context)
+    #     ctx.update({'search_default_decorproject_id': self.id})
+    #     action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'view_decorproject_decorscheduletasks_all')
+    #     return dict(action, context=ctx)
 
     def trans_pretoschedule_tasks(self):
         pretasks = self.env['saaspms.decorpretask'].read_group(

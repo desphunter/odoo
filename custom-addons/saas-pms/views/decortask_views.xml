@@ -76,16 +76,16 @@
             </field>
         </record>
 
-        <record id="view_decorproject_decorpretasks_all" model="ir.actions.act_window">
-            <field name="name">预填单</field>
-            <field name="res_model">saaspms.decorpretask</field>
-            <field name="context">{
-                'search_default_project_id': [active_id],
-                'default_decorproject_id': active_id,
-                }</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_pretask_search_form"/>
-        </record>
+<!--        <record id="view_decorproject_decorpretasks_all" model="ir.actions.act_window">-->
+<!--            <field name="name">saas decorpretask all</field>-->
+<!--            <field name="res_model">saaspms.decorpretask</field>-->
+<!--            <field name="context">{-->
+<!--                'search_default_project_id': [active_id],-->
+<!--                'default_decorproject_id': active_id,-->
+<!--                }</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="search_view_id" ref="view_pretask_search_form"/>-->
+<!--        </record>-->
 
 
         <!-- decor schedule task -->
@@ -133,7 +133,7 @@
         </record>
 
         <record id="view_decorproject_decorscheduletasks_all" model="ir.actions.act_window">
-            <field name="name">Project decorscheduletask</field>
+            <field name="name">Project decorscheduletask all</field>
             <field name="res_model">saaspms.decorscheduletask</field>
             <field name="context">{
                 'search_default_project_id': [active_id],
