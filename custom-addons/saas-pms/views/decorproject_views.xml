@@ -1,36 +1,6 @@
 <odoo>
   <data>
       <!-- decorproject stage -->
-<!--      <record id="view_pms_decorproject_stage" model="ir.ui.view">-->
-<!--          <field name="name">saaspms.pms_decorproject_stage.list</field>-->
-<!--          <field name="model">saaspms.decorproject.stage</field>-->
-<!--          <field name="arch" type="xml">-->
-<!--              <tree string="Project Stage">-->
-<!--                  <field name="sequence" widget="handle" groups="base.group_no_one"/>-->
-<!--                  <field name="name"/>-->
-<!--                  <field name="description"/>-->
-<!--              </tree>-->
-<!--          </field>-->
-<!--      </record>-->
-
-<!--      <record id="edit_pms_decorproject_stage" model="ir.ui.view">-->
-<!--          <field name="name">saaspms.pms_decorproject_stage.form</field>-->
-<!--          <field name="model">saaspms.decorproject.stage</field>-->
-<!--          <field name="arch" type="xml">-->
-<!--              <form string="Project Stage">-->
-<!--                  <sheet>-->
-<!--                      <group>-->
-<!--                          <group>-->
-<!--                              <field name="name"/>-->
-<!--                          </group>-->
-<!--                          <group>-->
-<!--                              <field name="sequence"/>-->
-<!--                          </group>-->
-<!--                      </group>-->
-<!--                  </sheet>-->
-<!--              </form>-->
-<!--          </field>-->
-<!--      </record>-->
 
 
 <!--        view project in search panel in front page-->
@@ -41,27 +11,13 @@
               <search string="装修项目">
                   <field name="name" string="装修项目"/>
                   <field name="stage_id"/>
-<!--                  <separator/>-->
-<!--                  <filter string="Unread Messages" name="message_needaction"-->
-<!--                          domain="[('message_needaction', '=', True)]"/>-->
-<!--                  <separator/>-->
-<!--                  <filter invisible="1" string="Late Activities" name="activities_overdue"-->
-<!--                          domain="[('activity_ids.date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>-->
-<!--                  <filter invisible="1" string="Today Activities" name="activities_today"-->
-<!--                          domain="[('activity_ids.date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>-->
-<!--                  <filter invisible="1" string="Future Activities" name="activities_upcoming_all"-->
-<!--                          domain="[('activity_ids.date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>-->
                   <separator/>
                   <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                   <group expand="0" string="Group By">
                       <filter name="group_city" string="城市" domain="[]" context="{'group_by': 'city_id'}"/>
-<!--                      <filter name="group_district" string="Department" domain="[]"-->
-<!--                              context="{'group_by': 'department_id'}"/>-->
-<!--                      <filter name="group_" string="Job" domain="[]" context="{'group_by': 'job_id'}"/>-->
                   </group>
                   <searchpanel>
                       <field name="city_id" icon="fa-building"/>
-<!--                      <field name="department_id" icon="fa-users"/>-->
                   </searchpanel>
               </search>
           </field>
@@ -90,22 +46,22 @@
           <field name="arch" type="xml">
               <form string="装修项目">
                   <header>
-<!--                      <button string="加载预填任务" name="open_decorpretasks" type="object" class="btn-primary o_open_pretasks"-->
-<!--                              attrs="{'invisible' : [('stage_id', '!=', 1)]}"/>-->
-                      <button string="生成计划任务基础" name="trans_pretoschedule_tasks" type="object" class="btn-primary o_create_schedule_tasks"
+                      <button string="生成计划任务基础" name="trans_pretoschedule_tasks" type="object"
+                              class="btn-primary o_create_schedule_tasks"
                               attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
-                      <button string="显示计划任务" name="open_decorscheduletasks" type="object" class="btn-primary o_open_scheduletasks"
+                      <button string="显示计划任务" name="open_decorscheduletasks" type="object"
+                              class="btn-primary o_open_scheduletasks"
                               attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
                       <button string="自动排期" name="automake_schedule" type="object" class="btn-primary o_maek_schedulet"
                               attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
                       <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}"/>
                   </header>
                   <sheet string="装修项目">
-                      <div class="oe_button_box" name="button_box" groups="base.group_user">
-<!--                          <button class="oe_stat_button" type="action"-->
-<!--                                  name="saas-pms.view_decorproject_decorpretasks_all" icon="fa-tasks">-->
-<!--                              <field string="预填任务" name="pretask_count" widget="statinfo"/>-->
-<!--                          </button>-->
+                      <div class="oe_button_box" name="button_box">
+                          <button class="oe_stat_button" type="action"
+                                  name="%(saas-pms.view_decorproject_decorpretasks_all)d" icon="fa-tasks">
+                              <field string="预填任务" name="pretask_count" widget="statinfo"/>
+                          </button>
                       </div>
                       <div class="oe_title">
                           <h1>
@@ -133,38 +89,64 @@
 
 
         <!--      project kanban view -->
-      <record model="ir.ui.view" id="view_decorproject_kanban">
+<!--      <record model="ir.ui.view" id="view_decorproject_kanban">-->
+<!--          <field name="name">saaspms.decorproject.kanban</field>-->
+<!--          <field name="model">saaspms.decorproject</field>-->
+<!--          <field name="arch" type="xml">-->
+<!--              <kanban>-->
+<!--                  <field name="name"/>-->
+<!--                  <field name="color"/>-->
+<!--&lt;!&ndash;                  <field name="pretask_count" string="派工单数"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <field name="scheduletask_count" string="计划工程任务数"/>&ndash;&gt;-->
+<!--                  <templates>-->
+<!--                      <t t-name="kanban-box">-->
+<!--                          <div class="oe_kanban_global_click">-->
+<!--                              <div class="oe_kanban_content">-->
+<!--                                  <div class="oe_kanban_card">-->
+<!--                                      <span><t t-esc="record.name.value"/></span>-->
+<!--                                  </div>-->
+<!--                              </div>-->
+<!--                          </div>-->
+<!--                      </t>-->
+<!--                  </templates>-->
+<!--              </kanban>-->
+<!--          </field>-->
+<!--      </record>-->
+
+
+      <record id="view_decorproject_kanban" model="ir.ui.view">
           <field name="name">saaspms.decorproject.kanban</field>
           <field name="model">saaspms.decorproject</field>
           <field name="arch" type="xml">
-              <kanban class="oe_background_grey o_kanban_dashboard o_project_kanban o_emphasize_colors"
-                      on_create="project.open_create_project">
+              <kanban>
+                  <field name="id"/>
                   <field name="name"/>
-                  <field name="pretask_count" string="派工单数"/>
-                  <field name="scheduletask_count" string="计划工程任务数"/>
+                  <field name="color"/>
+                  <field name="date_start"/>
+                  <field name="date_required"/>
+                  <field name="pretask_count"/>
                   <templates>
                       <t t-name="kanban-box">
                           <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click o_has_icon">
-                              <div class="o_project_kanban_main">
-                                  <div class="o_kanban_card_content">
-                                      <div class="o_kanban_primary_left">
-                                          <div class="o_primary">
-                                              <span><t t-esc="record.name.value"/></span>
-<!--                                              <span t-if="record.partner_id.value">-->
-<!--                                                  <strong><t t-esc="record.partner_id.value"/></strong>-->
-<!--                                              </span>-->
-                                          </div>
-                                      </div>
+                              <div class="oe_kanban_details">
+                                  <t class="o_kanban_record_title">
+                                      <strong t-esc="record.name.value"/>
+                                  </t>
+                                  <div t-if="record.date_start.value">
+                                      <t t-esc="record.date_start.value"/>
+                                  </div>
+                                  <div t-if="record.date_required.value">
+                                      <t t-esc="record.date_required.value"/>
                                   </div>
                               </div>
-<!--                              <div class="o_project_kanban_boxes">-->
-<!--                                  <a class="o_project_kanban_box" name="%(saas-pms.view_decorproject_decorpretasks_all)d"-->
-<!--                                     type="action">-->
-<!--                                      <div>-->
-<!--                                          <span class="o_value"><t t-esc="record.pretask_count.value"/></span>-->
-<!--                                      </div>-->
-<!--                                  </a>-->
-<!--                              </div>-->
+                              <div class="o_project_kanban_boxes">
+                                  <a class="o_project_kanban_box"
+                                     name="%(saas-pms.view_decorproject_decorpretasks_all)d" type="action">
+                                      <div>
+                                          <span class="o_value"><t t-esc="record.pretask_count.value"/>预填单数</span>
+                                      </div>
+                                  </a>
+                              </div>
                           </div>
                       </t>
                   </templates>
@@ -172,33 +154,7 @@
           </field>
       </record>
 
-
-      <!-- tags -->
-<!--      <record id="view_pms_tags" model="ir.ui.view">-->
-<!--          <field name="name">saaspms.tags.list</field>-->
-<!--          <field name="model">saaspms.tags</field>-->
-<!--          <field name="arch" type="xml">-->
-<!--              <tree string="Tags" editable="bottom">-->
-<!--                  <field name="name"/>-->
-<!--              </tree>-->
-<!--          </field>-->
-<!--      </record>-->
-
-<!--      <record id="edit_tags" model="ir.ui.view">-->
-<!--          <field name="name">saaspms.tags.form</field>-->
-<!--          <field name="model">saaspms.tags</field>-->
-<!--          <field name="arch" type="xml">-->
-<!--              <form string="Tags">-->
-<!--                  <sheet>-->
-<!--                      <group>-->
-<!--                          <field name="name"/>-->
-<!--                      </group>-->
-<!--                  </sheet>-->
-<!--              </form>-->
-<!--          </field>-->
-<!--      </record>-->
-
-    <!-- server action to the one above -->
+      <!-- server action to the one above -->
 <!--
     <record model="ir.actions.server" id="saas-pms.action_server">
       <field name="name">saas-pms server</field>
@@ -220,31 +176,6 @@
 <!--      <field name="state">code</field>-->
 <!--      <field name="code">action = model.activate_sample_project()</field>-->
 <!--    </record>-->
-
-    <!-- Project -->
-
-
-<!--    <record id="view_project_project_filter" model="ir.ui.view">-->
-<!--      <field name="name">saaspms.project.select</field>-->
-<!--      <field name="model">saaspms.project</field>-->
-<!--      <field name="arch" type="xml">-->
-<!--        <search string="Search Project">-->
-<!--          <field name="name" string="Project"/>-->
-<!--          <field name="user_id" string="Project Manager"/>-->
-<!--          <field name="partner_id" string="Customer" filter_domain="[('partner_id', 'child_of', self)]"/>-->
-<!--          <filter string="My Favorites" name="my_projects" domain="[('favorite_user_ids', 'in', uid)]"/>-->
-<!--          <separator/>-->
-<!--          <filter string="Followed" name="followed_by_me" domain="[('message_is_follower', '=', True)]"/>-->
-<!--          <separator/>-->
-<!--          <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>-->
-<!--          <group expand="0" string="Group By">-->
-<!--            <filter string="Project Manager" name="Manager" context="{'group_by': 'user_id'}"/>-->
-<!--            <filter string="Customer" name="Partner" context="{'group_by': 'partner_id'}"/>-->
-<!--          </group>-->
-<!--        </search>-->
-<!--      </field>-->
-<!--    </record>-->
-
 
   </data>
 </odoo>

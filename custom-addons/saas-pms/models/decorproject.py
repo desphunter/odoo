@@ -82,7 +82,7 @@ class DecorProject(models.Model):
                                group_expand='_group_expand_stage_id')
     state = fields.Selection(string='状态', related='stage_id.state')
 
-    color = fields.Integer(string='色标')
+    color = fields.Integer(string='色标', default=0)
 
     city_id = fields.Many2one('saaspms.decorproject.city', default=_default_city, string='城市ID',
                               group_expand='_group_expand_city_id')
@@ -115,16 +115,16 @@ class DecorProject(models.Model):
     #  CRUD
     # ---------------------------------------------------
 
-    @api.model
-    def create(self, vals):
-        # Prevent double project creation
-        self = self.with_context(mail_create_nosubscribe=True)
-        project = super(Project, self).create(vals)
-        if not vals.get('subtask_project_id'):
-            project.subtask_project_id = project.id
-        if project.privacy_visibility == 'portal' and project.partner_id:
-            project.message_subscribe(project.partner_id.ids)
-        return project
+    # @api.model
+    # def create(self, vals):
+    #     # Prevent double project creation
+    #     self = self.with_context(mail_create_nosubscribe=True)
+    #     project = super(Project, self).create(vals)
+    #     if not vals.get('subtask_project_id'):
+    #         project.subtask_project_id = project.id
+    #     if project.privacy_visibility == 'portal' and project.partner_id:
+    #         project.message_subscribe(project.partner_id.ids)
+    #     return project
 
 
     def unlink(self):
@@ -140,17 +140,17 @@ class DecorProject(models.Model):
     #  Actions
     # ---------------------------------------------------
 
-    # def open_decorpretasks(self):
-    #     ctx = dict(self._context)
-    #     ctx.update({'search_default_decorproject_id': self.id})
-    #     action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'view_decorproject_decorpretasks_all')
-    #     return dict(action, context=ctx)
+    def open_decorpretasks(self):
+        ctx = dict(self._context)
+        ctx.update({'search_default_decorproject_id': self.id})
+        action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'view_decorproject_decorpretasks_all')
+        return dict(action, context=ctx)
 
-    # def open_decorscheduletasks(self):
-    #     ctx = dict(self._context)
-    #     ctx.update({'search_default_decorproject_id': self.id})
-    #     action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'view_decorproject_decorscheduletasks_all')
-    #     return dict(action, context=ctx)
+    def open_decorscheduletasks(self):
+        ctx = dict(self._context)
+        ctx.update({'search_default_decorproject_id': self.id})
+        action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'view_decorproject_decorscheduletasks_all')
+        return dict(action, context=ctx)
 
     def trans_pretoschedule_tasks(self):
         pretasks = self.env['saaspms.decorpretask'].read_group(
