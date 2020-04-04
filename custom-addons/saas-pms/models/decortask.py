@@ -34,7 +34,7 @@ class DecorPreTask(models.Model):
 
 
     active = fields.Boolean(default=True)
-    name = fields.Char(string='PreTask Name', required=True, index=True)
+    # name = fields.Char(string='PreTask Name', required=True, index=True)
     purchase_item = fields.Many2one('saaspms.decoritem.input', string='预填任务')
 
     decorpretask_zone = fields.Many2one('saaspms.decorpretask.zone', string='任务区域')

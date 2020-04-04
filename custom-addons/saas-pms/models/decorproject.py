@@ -177,7 +177,7 @@ class DecorProject(models.Model):
             project_item = self.env['saaspms.decoritem.project'].search([('code', '=', project_item_code)])
             for pi in project_item:
                 project_item_name = project_item.name
-                project_schedule_stage_seq = project_item.schedule_stagezh_CN.mo
+                project_schedule_stage_seq = project_item.schedule_stage
 
                 if project_item.period_type == 'fixed':
                     offset_days = project_item.period_base

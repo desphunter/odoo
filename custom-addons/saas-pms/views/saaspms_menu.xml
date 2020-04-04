@@ -62,7 +62,7 @@
     <act_window id="action_saaspms_decorscheduletask"
                 name="计划任务"
                 res_model="saaspms.decorscheduletask"
-                view_mode="tree,form"/>
+                view_mode="tree,form,gantt"/>
 
     <menuitem id="menu_saaspms_decorscheduletask"
               name="计划任务"

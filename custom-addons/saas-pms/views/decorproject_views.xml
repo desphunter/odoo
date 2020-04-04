@@ -46,6 +46,9 @@
           <field name="arch" type="xml">
               <form string="装修项目">
                   <header>
+                      <button string="加载预填任务" name="open_decorpretasks" type="object"
+                              class="btn-primary o_open_pretasks"
+                              attrs="{'invisible' : [('stage_id', '!=', 1)]}"/>
                       <button string="生成计划任务基础" name="trans_pretoschedule_tasks" type="object"
                               class="btn-primary o_create_schedule_tasks"
                               attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>

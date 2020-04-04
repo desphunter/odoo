@@ -132,6 +132,18 @@
             </field>
         </record>
 
+
+        <!--        decor schedule tasks gantt view-->
+        <record id="view_your_model_gantt" model="ir.ui.view">
+            <field name="name">saaspms.decorscheduletask.gantt</field>
+            <field name="model">saaspms.decorscheduletask</field>
+            <field name="type">gantt</field>
+            <field name="arch" type="xml">
+                <gantt date_start="date_start" date_stop="date_end" string="Projects">
+                </gantt>
+            </field>
+        </record>
+
         <record id="view_decorproject_decorscheduletasks_all" model="ir.actions.act_window">
             <field name="name">Project decorscheduletask all</field>
             <field name="res_model">saaspms.decorscheduletask</field>
