@@ -20,10 +20,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'hr'],
 
     # always loaded
     'data': [
+        'data/decorproject_default_config.xml',
         'security/ir.model.access.csv',
         'views/decorproject_views.xml',
         'views/decortask_views.xml',

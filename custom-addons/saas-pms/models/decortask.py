@@ -26,6 +26,10 @@ class DecorScheduleTask(models.Model):
                                       index=True, tracking=True, change_default=True)
 
 
+    scheduletask_worker_id = fields.Many2one('hr.employee', string='派工人员',
+                                             domain=['|', ('job_title', '!=', '监理'), ('job_title', '!=', '项目经理')])
+
+
 
 
 class DecorPreTask(models.Model):

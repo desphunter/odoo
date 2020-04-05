@@ -57,6 +57,8 @@
                               attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
                       <button string="自动排期" name="automake_schedule" type="object" class="btn-primary o_maek_schedulet"
                               attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
+                      <button string="派工" name="assign_decorscheduletasks_worker" type="object" class="btn-primary o_maek_schedulet"
+                              attrs="{'invisible' : [('stage_id', '!=', 3)]}"/>
                       <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}"/>
                   </header>
                   <sheet string="装修项目">
@@ -71,6 +73,10 @@
                               <field name="name" placeholder="Project Name" string="名称"/>
                           </h1>
                       </div>
+                      <group>
+                          <field name="decorproject_pm_id" string="项目经理"/>
+                          <field name="decorproject_qm_id" string="监理"/>
+                      </group>
                       <notebook>
                           <page name="settings" string="参数配置">
                               <group>
@@ -87,6 +93,19 @@
                       </notebook>
                   </sheet>
               </form>
+          </field>
+      </record>
+
+      <record id="view_decorproject_calendar" model="ir.ui.view">
+          <field name="name">decorproject calendar</field>
+          <field name="model">saaspms.decorproject</field>
+          <field eval="2" name="priority"/>
+          <field name="arch" type="xml">
+              <calendar date_start="date_required" string="Decor Project" mode="month" event_limit="5"
+                        hide_time="true">
+                  <field name="date_required"/>
+                  <field name="name"/>
+              </calendar>
           </field>
       </record>
 

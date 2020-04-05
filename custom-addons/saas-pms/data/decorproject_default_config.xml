@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--stage-->
+
+<!--        <record id="stage_1" model="saaspms.decorproject.stage">-->
+<!--            <field name="name">派工单</field>-->
+<!--            <field name="state">正在进行</field>-->
+<!--        </record>-->
+
+<!--        <record id="stage_2" model="saaspms.decorproject.stage">-->
+<!--            <field name="name">工程计划</field>-->
+<!--            <field name="state">正在进行</field>-->
+<!--        </record>-->
+
+<!--        <record id="stage_3" model="saaspms.decorproject.stage">-->
+<!--            <field name="name">派单</field>-->
+<!--            <field name="state">正在进行</field>-->
+<!--        </record>-->
+
+<!--        <record id="stage_4" model="saaspms.decorproject.stage">-->
+<!--            <field name="name">质检</field>-->
+<!--            <field name="state">正在进行</field>-->
+<!--        </record>-->
+
+        <!--decor zone-->
+
+        <record id="zone_1" model="saaspms.decorpretask.zone">
+            <field name="name">卧室1</field>
+        </record>
+
+        <record id="zone_2" model="saaspms.decorpretask.zone">
+            <field name="name">卧室2</field>
+        </record>
+
+        <record id="zone_3" model="saaspms.decorpretask.zone">
+            <field name="name">卧室3</field>
+        </record>
+
+        <record id="zone_4" model="saaspms.decorpretask.zone">
+            <field name="name">卧室4</field>
+        </record>
+
+        <record id="zone_5" model="saaspms.decorpretask.zone">
+            <field name="name">卧室5</field>
+        </record>
+
+        <record id="zone_6" model="saaspms.decorpretask.zone">
+            <field name="name">卧室6</field>
+        </record>
+
+        <record id="zone_7" model="saaspms.decorpretask.zone">
+            <field name="name">卫生间1</field>
+        </record>
+
+        <record id="zone_8" model="saaspms.decorpretask.zone">
+            <field name="name">卫生间2</field>
+        </record>
+
+        <record id="zone_9" model="saaspms.decorpretask.zone">
+            <field name="name">厨房</field>
+        </record>
+
+        <record id="zone_10" model="saaspms.decorpretask.zone">
+            <field name="name">客厅</field>
+        </record>
+
+
+    </data>
+</odoo>

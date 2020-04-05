@@ -95,6 +95,19 @@ class DecorProject(models.Model):
     decorscheduletasks = fields.One2many('saaspms.decorscheduletask', 'decorproject_id', string="计划任务集")
     decorscheduletask_ids = fields.One2many('saaspms.decorscheduletask', 'decorproject_id', string='计划任务ID集')
 
+
+    # @api.model
+    # def _get_hr_pm(self):
+    #     return self.env['hr.employee'].search(['job_title', '=', '项目经理'])
+
+    # @api.model
+    # def _get_hr_qm(self):
+    #     return [(self.env['hr.employee'].search('job_title', '=', '监理').id)]
+
+    decorproject_pm_id = fields.Many2one('hr.employee', string="项目经理", domain=[('job_title', '=', '项目经理')])
+
+    decorproject_qm_id = fields.Many2one('hr.employee', string="监理", domain=[('job_title', '=', '监理')])
+
     # _sql_constraints = [
     #     ('project_date_greater', 'check(date >= date_start)', 'Error! project start-date must be lower than project end-date.')
     # ]
@@ -151,6 +164,14 @@ class DecorProject(models.Model):
         ctx.update({'search_default_decorproject_id': self.id})
         action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'view_decorproject_decorscheduletasks_all')
         return dict(action, context=ctx)
+
+    def assign_decorscheduletasks_worker(self):
+        ctx = dict(self._context)
+        ctx.update({'search_default_decorproject_id': self.id})
+        action = self.env['ir.actions.act_window'].for_xml_id('saas-pms', 'assign_decorscheduletask_worker')
+        return dict(action, context=ctx)
+
+
 
     def trans_pretoschedule_tasks(self):
         pretasks = self.env['saaspms.decorpretask'].read_group(

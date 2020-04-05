@@ -39,8 +39,8 @@
                 <tree string="预填项目列表">
                     <field name="active" invisible="1" string="有效"/>
                     <field name="purchase_item" string="预填项"/>
-                    <field name="purchase_projectitem_code" string="预填项代码"/>
-                    <field name="purchase_projectitem_name" string="预填项名称"/>
+                    <field name="purchase_projectitem_code" string="定额项代码"/>
+                    <field name="purchase_projectitem_name" string="定额项名称"/>
                     <field name="decorpretask_zone" string="区域"/>
                     <field name="quantity" string="数量"/>
                     <field name="decorproject_id" string="项目ID"/>
@@ -99,10 +99,33 @@
                     <field name="name" string="名称"/>
                     <field name="date_start" string="起始日期"/>
                     <field name="date_end" string="截止日期"/>
+                    <field name="stage_sequence" string="阶段"/>
                     <field name="offset_days" string="工期"/>
                     <field name="decorproject_id" string="项目ID"/>
                 </tree>
             </field>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="view_decorscheduletask_worker_simple">
+            <field name="name">view_decorscheduletask_worker_simple</field>
+            <field name="model">saaspms.decorscheduletask</field>
+            <field name="arch" type="xml">
+                <tree string="计划任务" editable="bottom">
+                    <field name="code" string="编码"/>
+                    <field name="name" string="名称"/>
+                    <field name="scheduletask_worker_id" string="派给"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="assign_decorscheduletask_worker" model="ir.actions.act_window">
+            <field name="name">assign_decorscheduletask_worker</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">saaspms.decorscheduletask</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_decorscheduletask_worker_simple"/>
         </record>
 
         <record id="edit_decorscheduletask" model="ir.ui.view">
@@ -139,7 +162,7 @@
             <field name="model">saaspms.decorscheduletask</field>
             <field name="type">gantt</field>
             <field name="arch" type="xml">
-                <gantt date_start="date_start" date_stop="date_end" string="Projects">
+                <gantt date_start="date_start" date_stop="date_end" string="Tasks">
                 </gantt>
             </field>
         </record>

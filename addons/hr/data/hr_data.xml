@@ -2,13 +2,41 @@
 <odoo>
     <data noupdate="1">
 
-        <record id="dep_administration" model="hr.department">
-          <field name="name">Administration</field>
+        <!--Department-->
+
+        <record id="dep_project" model="hr.department">
+            <field name="name">项目部</field>
         </record>
 
-        <record id="dep_sales" model="hr.department">
-          <field name="name">Sales</field>
+        <record id="dep_work" model="hr.department">
+            <field name="name">施工部</field>
         </record>
+
+        <record id="dep_quality" model="hr.department">
+            <field name="name">质量部</field>
+        </record>
+
+        <!--Job-->
+
+        <record id="job_pm" model="hr.job">
+            <field name="name">项目经理</field>
+            <field name="department_id" ref="dep_project"/>
+            <field name="no_of_recruitment">5</field>
+        </record>
+
+        <record id="job_ng" model="hr.job">
+            <field name="name">泥工</field>
+            <field name="department_id" ref="dep_work"/>
+            <field name="no_of_recruitment">5</field>
+        </record>
+
+        <record id="job_jl" model="hr.job">
+            <field name="name">监理</field>
+            <field name="department_id" ref="dep_quality"/>
+            <field name="no_of_recruitment">5</field>
+        </record>
+
+        <!--Config-->
 
         <record id="employee_admin" model="hr.employee">
             <field name="name" eval="obj(ref('base.partner_admin')).name" model="res.partner"/>
@@ -67,32 +95,41 @@
             <field name="email_from">${user.email_formatted | safe}</field>
             <field name="email_to">${ctx['email_to']|safe}</field>
             <field name="body_html" type="html">
-<table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
-<table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
-<tbody>
-    <tr>
-        <td align="center" style="min-width: 590px;">
-            <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
-                <tr><td valign="top" style="font-size: 13px;">
-                    <div>
-                        Hi,<br/>
-                        Your document has not been created because your email address is not recognized. Please send emails with the email address recorded on your employee information, or contact your HR manager.
-                    </div>
+                <table border="0" cellpadding="0" cellspacing="0"
+                       style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td
+                        align="center">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590"
+                           style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody>
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                           style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                        <tr><td valign="top" style="font-size: 13px;">
+                                            <div>
+                                                Hi,<br/>
+                                                Your document has not been created because your email address is not
+                                                recognized. Please send emails with the email address recorded on your
+                                                employee information, or contact your HR manager.
+                                            </div>
+                                        </td></tr>
+                                    </table>
+                                </td></tr>
+                        </tbody>
+                    </table>
                 </td></tr>
-            </table>
-    </td></tr>
-</tbody>
-</table>
-</td></tr>
-<!-- POWERED BY -->
-<tr><td align="center" style="min-width: 590px;">
-    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
-      <tr><td style="text-align: center; font-size: 13px;">
-        Powered by <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=hr" style="color: #875A7B;">Odoo</a>
-      </td></tr>
-    </table>
-</td></tr>
-</table>
+                    <!-- POWERED BY -->
+                    <tr><td align="center" style="min-width: 590px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                               style="min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;">
+                            <tr><td style="text-align: center; font-size: 13px;">
+                                Powered by <a target="_blank"
+                                              href="https://www.odoo.com?utm_source=db&amp;utm_medium=hr"
+                                              style="color: #875A7B;">Odoo</a>
+                            </td></tr>
+                        </table>
+                    </td></tr>
+                </table>
             </field>
             <field name="lang">${user.lang}</field>
             <field name="auto_delete" eval="True"/>
@@ -103,6 +140,7 @@
             <field name="key">hr.hr_presence_control_login</field>
             <field name="value">True</field>
         </record>
+
 
     </data>
 </odoo>
