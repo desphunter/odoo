@@ -714,10 +714,13 @@ var StatementModel = BasicModel.extend({
                 switch(value.operation) {
                     case "ADD_M2M":
                         prop.__tax_to_recompute = true;
-                        if (!_.findWhere(prop.tax_ids, {id: value.ids.id})) {
-                            value.ids.price_include = self.taxes[value.ids.id] ? self.taxes[value.ids.id].price_include : false;
-                            prop.tax_ids.push(value.ids);
-                        }
+                        var vids = _.isArray(value.ids) ? value.ids : [value.ids];
+                        _.each(vids, function(val){
+                            if (!_.findWhere(prop.tax_ids, {id: val.id})) {
+                                value.ids.price_include = self.taxes[val.id] ? self.taxes[val.id].price_include : false;
+                                prop.tax_ids.push(val);
+                            }
+                        });
                         break;
                     case "FORGET":
                         prop.__tax_to_recompute = true;
@@ -1689,6 +1692,7 @@ var ManualModel = StatementModel.extend({
             line.reconciliation_proposition = _.filter(line.reconciliation_proposition, function (p) {
                 return p.id !== prop.id && p.id !== prop.link && p.link !== prop.id && (!p.link || p.link !== prop.link);
             });
+            line.mv_lines_match = line.mv_lines_match || [];
             line.mv_lines_match.unshift(prop);
 
             // No proposition left and then, reset the st_line partner.
